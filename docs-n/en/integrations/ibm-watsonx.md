@@ -197,9 +197,9 @@ test: test/images # test images subdirectory
 
 # Classes
 names:
-    0: plastic
-    1: bio
-    2: rov
+  0: plastic
+  1: bio
+  2: rov
 ```
 
 Run the following script to delete the current contents of `config.yaml` and replace it with the configuration that reflects our new data set directory structure. The script automatically uses the `work_dir` variable we defined earlier, so be sure it points to your dataset before execution, and leave the train, val, and test subdirectory definitions unchanged.

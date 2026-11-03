@@ -1,7 +1,6 @@
-"""复用 yolov8.py 的全部训练和评估参数，在 SVRDD 上训练 YOLOv9（无 n 尺寸，最小为 t）。"""
+"""复用 yolov8.py 的全部训练和评估参数，在 SVRDD 上训练 YOLOv9（无 n 尺寸，最小为 t）。."""
 
 import yolov8  # 训练/评估协议只在 yolov8.py 维护一份，这里仅替换数据和权重。
-
 
 if __name__ == "__main__":
     yolov8.DATA = yolov8.ROOT / "datasets" / "SVRDD" / "data.yaml"

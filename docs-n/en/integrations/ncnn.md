@@ -214,21 +214,21 @@ To export your Ultralytics YOLO26 model to NCNN format:
 
 - **Python**: Use the `export` method from the YOLO class.
 
-    ```python
-    from ultralytics import YOLO
+  ```python
+  from ultralytics import YOLO
 
-    # Load a YOLO26 model
-    model = YOLO("yolo26n.pt")
+  # Load a YOLO26 model
+  model = YOLO("yolo26n.pt")
 
-    # Export to NCNN format
-    model.export(format="ncnn")  # creates 'yolo26n_ncnn_model'
-    ```
+  # Export to NCNN format
+  model.export(format="ncnn")  # creates 'yolo26n_ncnn_model'
+  ```
 
 - **CLI**: Use the `yolo export` command.
 
-    ```bash
-    yolo export model=yolo26n.pt format=ncnn # creates 'yolo26n_ncnn_model'
-    ```
+  ```bash
+  yolo export model=yolo26n.pt format=ncnn # creates 'yolo26n_ncnn_model'
+  ```
 
 For detailed export options, see the [Export](../modes/export.md) documentation.
 
