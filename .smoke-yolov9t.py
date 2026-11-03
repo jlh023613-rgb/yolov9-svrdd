@@ -1,10 +1,9 @@
-"""临时冒烟测试：验证 YOLOv9t 能在 SVRDD 上走通 yolo8n-svrdd.py 的同一条训练路径。"""
+"""临时冒烟测试：验证 YOLOv9t 能在 SVRDD 上走通 yolo8n-svrdd.py 的同一条训练路径。."""
 
 from pathlib import Path
 
-from ultralytics import YOLO
-
 import yolov8
+from ultralytics import YOLO
 
 yolov8.DATA = yolov8.ROOT / "datasets" / "SVRDD" / "data.yaml"
 yolov8.MODEL = yolov8.ROOT / "yolov9t.pt"

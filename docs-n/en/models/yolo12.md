@@ -30,15 +30,15 @@ YOLO12, released in early 2025, introduces an attention-centric architecture tha
 
 - **Area Attention Mechanism**: A new self-attention approach that processes large receptive fields efficiently. It divides [feature maps](https://www.ultralytics.com/glossary/feature-maps) into _l_ equal-sized regions (defaulting to 4), either horizontally or vertically, avoiding complex operations and maintaining a large effective receptive field. This significantly reduces computational cost compared to standard self-attention.
 - **Residual Efficient Layer Aggregation Networks (R-ELAN)**: An improved feature aggregation module based on ELAN, designed to address optimization challenges, especially in larger-scale attention-centric models. R-ELAN introduces:
-    - Block-level residual connections with scaling (similar to layer scaling).
-    - A redesigned feature aggregation method creating a bottleneck-like structure.
+  - Block-level residual connections with scaling (similar to layer scaling).
+  - A redesigned feature aggregation method creating a bottleneck-like structure.
 - **Optimized Attention Architecture**: YOLO12 streamlines the standard attention mechanism for greater efficiency and compatibility with the YOLO framework. This includes:
-    - Using FlashAttention to minimize memory access overhead.
-    - Removing positional encoding for a cleaner and faster model.
-    - Adjusting the MLP ratio (from the typical 4 to 1.2 or 2) to better balance computation between attention and feed-forward layers.
-    - Reducing the depth of stacked blocks for improved optimization.
-    - Leveraging convolution operations (where appropriate) for their computational efficiency.
-    - Adding a 7x7 separable convolution (the "position perceiver") to the attention mechanism to implicitly encode positional information.
+  - Using FlashAttention to minimize memory access overhead.
+  - Removing positional encoding for a cleaner and faster model.
+  - Adjusting the MLP ratio (from the typical 4 to 1.2 or 2) to better balance computation between attention and feed-forward layers.
+  - Reducing the depth of stacked blocks for improved optimization.
+  - Leveraging convolution operations (where appropriate) for their computational efficiency.
+  - Adding a 7x7 separable convolution (the "position perceiver") to the attention mechanism to implicitly encode positional information.
 - **Comprehensive Task Support**: YOLO12 supports a range of core computer vision tasks: object detection, [instance segmentation](https://www.ultralytics.com/glossary/instance-segmentation), [image classification](https://www.ultralytics.com/glossary/image-classification), pose estimation, and oriented object detection (OBB).
 - **Enhanced Efficiency**: Achieves higher accuracy with fewer parameters compared to many prior models, demonstrating an improved balance between speed and accuracy.
 - **Flexible Deployment**: Designed for deployment across diverse platforms, from edge devices to cloud infrastructure.
@@ -124,19 +124,19 @@ The examples below focus on YOLO12 [Detect](../tasks/detect.md) models (for obje
 ## Key Improvements
 
 1. **Enhanced [Feature Extraction](https://www.ultralytics.com/glossary/feature-extraction)**:
-    - **Area Attention**: Efficiently handles large [receptive fields](https://www.ultralytics.com/glossary/receptive-field), reducing computational cost.
-    - **Optimized Balance**: Improved balance between attention and feed-forward network computations.
-    - **R-ELAN**: Enhances feature aggregation using the R-ELAN architecture.
+   - **Area Attention**: Efficiently handles large [receptive fields](https://www.ultralytics.com/glossary/receptive-field), reducing computational cost.
+   - **Optimized Balance**: Improved balance between attention and feed-forward network computations.
+   - **R-ELAN**: Enhances feature aggregation using the R-ELAN architecture.
 
 2. **Optimization Innovations**:
-    - **Residual Connections**: Introduces residual connections with scaling to stabilize training, especially in larger models.
-    - **Refined Feature Integration**: Implements an improved method for feature integration within R-ELAN.
-    - **FlashAttention**: Incorporates FlashAttention to reduce memory access overhead.
+   - **Residual Connections**: Introduces residual connections with scaling to stabilize training, especially in larger models.
+   - **Refined Feature Integration**: Implements an improved method for feature integration within R-ELAN.
+   - **FlashAttention**: Incorporates FlashAttention to reduce memory access overhead.
 
 3. **Architectural Efficiency**:
-    - **Reduced Parameters**: Achieves a lower parameter count while maintaining or improving accuracy compared to many previous models.
-    - **Streamlined Attention**: Uses a simplified attention implementation, avoiding positional encoding.
-    - **Optimized MLP Ratios**: Adjusts MLP ratios to more effectively allocate computational resources.
+   - **Reduced Parameters**: Achieves a lower parameter count while maintaining or improving accuracy compared to many previous models.
+   - **Streamlined Attention**: Uses a simplified attention implementation, avoiding positional encoding.
+   - **Optimized MLP Ratios**: Adjusts MLP ratios to more effectively allocate computational resources.
 
 ## Requirements
 

@@ -121,33 +121,33 @@ To train a YOLO26 model using JupyterLab:
 
 1. Install JupyterLab and the Ultralytics package:
 
-    ```bash
-    pip install jupyterlab ultralytics
-    ```
+   ```bash
+   pip install jupyterlab ultralytics
+   ```
 
 2. Launch JupyterLab and open a new notebook.
 
 3. Import the YOLO model and load a pretrained model:
 
-    ```python
-    from ultralytics import YOLO
+   ```python
+   from ultralytics import YOLO
 
-    model = YOLO("yolo26n.pt")
-    ```
+   model = YOLO("yolo26n.pt")
+   ```
 
 4. Train the model on your custom dataset:
 
-    ```python
-    results = model.train(data="path/to/your/data.yaml", epochs=100, imgsz=640)
-    ```
+   ```python
+   results = model.train(data="path/to/your/data.yaml", epochs=100, imgsz=640)
+   ```
 
 5. Visualize training results using JupyterLab's built-in plotting capabilities:
 
-    ```python
-    from ultralytics.utils.plotting import plot_results
+   ```python
+   from ultralytics.utils.plotting import plot_results
 
-    plot_results("runs/detect/train/results.csv")  # saves results.png next to results.csv
-    ```
+   plot_results("runs/detect/train/results.csv")  # saves results.png next to results.csv
+   ```
 
 JupyterLab's interactive environment allows you to easily modify parameters, visualize results, and iterate on your model training process.
 
@@ -170,23 +170,23 @@ To optimize YOLO26 model performance in JupyterLab:
 
 1. Use AutoBatch to pick the largest batch size that fits in GPU memory:
 
-    ```python
-    results = model.train(data="path/to/data.yaml", batch=-1)
-    ```
+   ```python
+   results = model.train(data="path/to/data.yaml", batch=-1)
+   ```
 
 2. Implement [hyperparameter tuning](../guides/hyperparameter-tuning.md) using libraries like Ray Tune:
 
-    ```python
-    result_grid = model.tune(data="path/to/data.yaml", use_ray=True)
-    ```
+   ```python
+   result_grid = model.tune(data="path/to/data.yaml", use_ray=True)
+   ```
 
 3. Visualize and analyze model metrics using JupyterLab's plotting capabilities:
 
-    ```python
-    from ultralytics.utils.plotting import plot_results
+   ```python
+   from ultralytics.utils.plotting import plot_results
 
-    plot_results("runs/detect/train/results.csv")  # saves results.png next to results.csv
-    ```
+   plot_results("runs/detect/train/results.csv")  # saves results.png next to results.csv
+   ```
 
 4. Experiment with different model architectures and [export formats](../modes/export.md) to find the best balance of speed and [accuracy](https://www.ultralytics.com/glossary/accuracy) for your specific use case.
 
@@ -197,13 +197,13 @@ JupyterLab's interactive environment allows for quick iterations and real-time f
 When working with JupyterLab and YOLO26, you might encounter some common issues. Here's how to handle them:
 
 1. GPU memory issues:
-    - Use `torch.cuda.empty_cache()` to clear GPU memory between runs.
-    - Adjust [batch size](https://www.ultralytics.com/glossary/batch-size) or image size to fit your GPU memory.
+   - Use `torch.cuda.empty_cache()` to clear GPU memory between runs.
+   - Adjust [batch size](https://www.ultralytics.com/glossary/batch-size) or image size to fit your GPU memory.
 
 2. Package conflicts:
-    - Create a separate conda environment for your YOLO26 projects to avoid conflicts.
-    - Use `!pip install package_name` in a notebook cell to install missing packages.
+   - Create a separate conda environment for your YOLO26 projects to avoid conflicts.
+   - Use `!pip install package_name` in a notebook cell to install missing packages.
 
 3. Kernel crashes:
-    - Restart the kernel and run cells one by one to identify the problematic code.
-    - Check for memory leaks in your code, especially when processing large datasets.
+   - Restart the kernel and run cells one by one to identify the problematic code.
+   - Check for memory leaks in your code, especially when processing large datasets.

@@ -14,6 +14,7 @@ import torch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from tests import MODEL, SOLUTION_ASSETS
+
 from ultralytics.cfg import TASK2CALIBRATIONDATA, TASK2DATA, TASK2MODEL
 from ultralytics.data.utils import check_cls_dataset, check_det_dataset
 from ultralytics.utils import ARM64, ASSETS_URL, DATASETS_DIR, IS_RASPBERRYPI, LINUX, LOGGER, WEIGHTS_DIR, checks

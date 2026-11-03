@@ -96,15 +96,15 @@ If you're on an older Conda version, you can enable `libmamba` manually:
 
 1. First, install the `conda-libmamba-solver` package:
 
-    ```bash
-    conda install conda-libmamba-solver
-    ```
+   ```bash
+   conda install conda-libmamba-solver
+   ```
 
 2. Next, configure Conda to use `libmamba` as the solver:
 
-    ```bash
-    conda config --set solver libmamba
-    ```
+   ```bash
+   conda config --set solver libmamba
+   ```
 
 You have successfully set up a Conda environment, installed the Ultralytics package, and are now ready to explore its features. For more advanced tutorials and examples, see the [Ultralytics documentation](../index.md).
 
