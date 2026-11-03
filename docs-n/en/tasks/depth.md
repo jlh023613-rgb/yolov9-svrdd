@@ -315,7 +315,7 @@ If your camera has no depth sensor, you can still calibrate for it. Calibration 
     val: images/val
     depth_scale: 100 # PNG value 100 = 1 meter
     names:
-        0: depth
+      0: depth
     ```
 
 4.  **Calibrate and save**, then load `yolo26s-depth-calibrated.pt` for prediction or export:

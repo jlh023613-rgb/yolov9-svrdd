@@ -95,31 +95,31 @@ For detailed instructions, see our [Ultralytics Installation guide](../quickstar
 
 1. Add the Axelera repository key:
 
-    ```bash
-    sudo sh -c "curl -fsSL https://software.axelera.ai/artifactory/api/security/keypair/axelera/public | gpg --dearmor -o /etc/apt/keyrings/axelera.gpg"
-    ```
+   ```bash
+   sudo sh -c "curl -fsSL https://software.axelera.ai/artifactory/api/security/keypair/axelera/public | gpg --dearmor -o /etc/apt/keyrings/axelera.gpg"
+   ```
 
 2. Add the repository to apt:
 
-    Choose the appropriate snippet from below to match the OS being used.
+   Choose the appropriate snippet from below to match the OS being used.
 
-    ```bash
-    # Ubuntu 22.04
-    sudo sh -c "echo 'deb [signed-by=/etc/apt/keyrings/axelera.gpg] https://software.axelera.ai/artifactory/axelera-apt-source ubuntu22 main' > /etc/apt/sources.list.d/axelera.list"
-    ```
+   ```bash
+   # Ubuntu 22.04
+   sudo sh -c "echo 'deb [signed-by=/etc/apt/keyrings/axelera.gpg] https://software.axelera.ai/artifactory/axelera-apt-source ubuntu22 main' > /etc/apt/sources.list.d/axelera.list"
+   ```
 
-    ```bash
-    # Ubuntu 24.04
-    sudo sh -c "echo 'deb [signed-by=/etc/apt/keyrings/axelera.gpg] https://software.axelera.ai/artifactory/axelera-apt-source ubuntu24 main' > /etc/apt/sources.list.d/axelera.list"
-    ```
+   ```bash
+   # Ubuntu 24.04
+   sudo sh -c "echo 'deb [signed-by=/etc/apt/keyrings/axelera.gpg] https://software.axelera.ai/artifactory/axelera-apt-source ubuntu24 main' > /etc/apt/sources.list.d/axelera.list"
+   ```
 
 3. Install the driver and load it. SDK 1.9 needs `metis-dkms` 1.7.0 or newer, so the newest is installed here:
 
-    ```bash
-    sudo apt update
-    sudo apt install -y metis-dkms
-    sudo modprobe metis
-    ```
+   ```bash
+   sudo apt update
+   sudo apt install -y metis-dkms
+   sudo modprobe metis
+   ```
 
 !!! note "Keep the kernel driver in sync with the SDK"
 

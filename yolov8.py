@@ -18,36 +18,36 @@ from ultralytics.utils.torch_utils import get_flops, get_num_params
 ROOT = Path(__file__).resolve().parent
 MODEL = ROOT / "yolov8s.pt"  # 每次从原始预训练权重开始；更换模型时也保持下面的训练协议一致。
 DATA = ROOT / "datasets" / "RDD2022" / "data.yaml"
-TRAIN_SETTINGS = dict(
-    imgsz=1024,  # 保持已有对比实验的输入尺寸；RDD 图片会按此尺寸缩放和填充。
-    batch=16,  # 对比实验保持一致，并核对结果中记录的实际 batch。
-    device=0,
-    workers=8,
-    epochs=500,
-    patience=40,  # 保留早停：验证集 mAP50-95 连续 40 轮未提升就停止。
-    seed=42,
-    deterministic=True,
-    optimizer="SGD",
-    lr0=0.01,
-    lrf=0.01,
-    momentum=0.937,
-    weight_decay=0.0005,
-    nbs=64,  # 名义累积 batch；实际梯度累积次数也记录在结果中。
-    warmup_epochs=3.0,
-    cos_lr=False,
-    close_mosaic=10,
-    amp=True,
-    cache=False,
-    fraction=1.0,
-    val=True,
-    plots=True,
-    save=True,
-    save_period=-1,  # 保存 best.pt、last.pt，不额外保存每轮权重。
-)
+TRAIN_SETTINGS = {
+    "imgsz": 1024,  # 保持已有对比实验的输入尺寸；RDD 图片会按此尺寸缩放和填充。
+    "batch": 16,  # 对比实验保持一致，并核对结果中记录的实际 batch。
+    "device": 0,
+    "workers": 8,
+    "epochs": 500,
+    "patience": 40,  # 保留早停：验证集 mAP50-95 连续 40 轮未提升就停止。
+    "seed": 42,
+    "deterministic": True,
+    "optimizer": "SGD",
+    "lr0": 0.01,
+    "lrf": 0.01,
+    "momentum": 0.937,
+    "weight_decay": 0.0005,
+    "nbs": 64,  # 名义累积 batch；实际梯度累积次数也记录在结果中。
+    "warmup_epochs": 3.0,
+    "cos_lr": False,
+    "close_mosaic": 10,
+    "amp": True,
+    "cache": False,
+    "fraction": 1.0,
+    "val": True,
+    "plots": True,
+    "save": True,
+    "save_period": -1,  # 保存 best.pt、last.pt，不额外保存每轮权重。
+}
 
 
 def snapshot_experiment(trainer):
-    """在训练开始时保存实验来源，避免中途停止后缺失配置和数据划分记录。"""
+    """在训练开始时保存实验来源，避免中途停止后缺失配置和数据划分记录。."""
     run_dir = Path(trainer.save_dir)
     pretrained_weights = Path(trainer.args.model)
     shutil.copy2(__file__, run_dir / "script_snapshot.py")
@@ -67,7 +67,11 @@ def snapshot_experiment(trainer):
             digest.update(relative.encode("utf-8") + b"\0" + content + b"\0")
             for line in content.decode("utf-8").splitlines():
                 counts[int(line.split()[0])] += 1
-        splits[split] = dict(images=len(images), instances_per_class=counts, paths_and_labels_sha256=digest.hexdigest())
+        splits[split] = {
+            "images": len(images),
+            "instances_per_class": counts,
+            "paths_and_labels_sha256": digest.hexdigest(),
+        }
     (run_dir / "split_images.json").write_text(json.dumps(manifests, indent=2), encoding="utf-8")
     report = {
         "pretrained_weights": str(pretrained_weights),
@@ -145,7 +149,7 @@ def main():
     (run_dir / "metrics.json").write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     model = YOLO(str(best_weights))
     comparison = []
-    for split in (("val", "test") if trainer.data.get("test") else ("val",)):
+    for split in ("val", "test") if trainer.data.get("test") else ("val",):
         metrics = model.val(
             **report["evaluation_settings"], split=split, project=str(run_dir), name=split, exist_ok=False
         )

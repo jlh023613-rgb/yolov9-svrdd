@@ -2,11 +2,11 @@
 title: DOTA8 OBB Dataset
 comments: true
 creator:
-    name: Ultralytics
-    url: https://www.ultralytics.com
+  name: Ultralytics
+  url: https://www.ultralytics.com
 license:
-    name: Research-Only
-    url: https://captain-whu.github.io/DOTA/dataset.html
+  name: Research-Only
+  url: https://captain-whu.github.io/DOTA/dataset.html
 description: Explore the DOTA8 dataset - a small, versatile oriented object detection dataset ideal for testing and debugging object detection models using Ultralytics YOLO26.
 keywords: DOTA8 dataset, Ultralytics, YOLO26, object detection, debugging, training models, oriented object detection, dataset YAML
 ---
@@ -25,15 +25,15 @@ keywords: DOTA8 dataset, Ultralytics, YOLO26, object detection, debugging, train
 - **Download**: 1 MB, fetched automatically from Ultralytics GitHub assets the first time you train.
 - **Recommended layout**:
 
-    ```text
-    datasets/dota8/
-    ├── images/
-    │   ├── train/
-    │   └── val/
-    └── labels/
-        ├── train/
-        └── val/
-    ```
+  ```text
+  datasets/dota8/
+  ├── images/
+  │   ├── train/
+  │   └── val/
+  └── labels/
+      ├── train/
+      └── val/
+  ```
 
 Explore [DOTA8 on Ultralytics Platform](https://platform.ultralytics.com/ultralytics/datasets/dota8) to browse the aerial tiles with their oriented-box overlays, view the class distribution and annotation heatmaps in the **Charts** tab, and clone it to train your own model in the cloud.
 

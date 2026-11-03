@@ -13,6 +13,7 @@ import pytest
 def solution_assets():
     """Return cached solution asset paths by name."""
     from tests import SOLUTION_ASSETS
+
     from ultralytics.utils import ASSETS_URL, WEIGHTS_DIR
     from ultralytics.utils.downloads import safe_download
 
