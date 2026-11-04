@@ -2,11 +2,11 @@
 title: DOTA OBB Dataset
 comments: true
 creator:
-    name: DOTA Team
-    url: https://captain-whu.github.io/DOTA/
+  name: DOTA Team
+  url: https://captain-whu.github.io/DOTA/
 license:
-    name: Research-Only
-    url: https://captain-whu.github.io/DOTA/dataset.html
+  name: Research-Only
+  url: https://captain-whu.github.io/DOTA/dataset.html
 description: Explore the DOTA dataset for object detection in aerial images, featuring 1.7M Oriented Bounding Boxes across 18 categories. Ideal for aerial image analysis.
 keywords: DOTA dataset, object detection, aerial images, oriented bounding boxes, OBB, DOTA v1.0, DOTA v1.5, DOTA v2.0, multiscale detection, Ultralytics
 ---
@@ -60,10 +60,10 @@ Explore the officially hosted [DOTA v1.5](https://platform.ultralytics.com/ultra
 - Comprises 11,268 images with a whopping 1,793,658 instances.
 - New categories introduced: "airport" and "helipad".
 - Image splits:
-    - Training: 1,830 images with 268,627 instances.
-    - Validation: 593 images with 81,048 instances.
-    - Test-dev: 2,792 images with 353,346 instances.
-    - Test-challenge: 6,053 images with 1,090,637 instances.
+  - Training: 1,830 images with 268,627 instances.
+  - Validation: 593 images with 81,048 instances.
+  - Test-dev: 2,792 images with 353,346 instances.
+  - Test-challenge: 6,053 images with 1,090,637 instances.
 
 ## Dataset Structure
 

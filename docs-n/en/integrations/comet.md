@@ -257,39 +257,39 @@ To integrate Comet with Ultralytics YOLO26, follow these steps:
 
 1. **Install the required packages**:
 
-    ```bash
-    pip install ultralytics comet_ml
-    ```
+   ```bash
+   pip install ultralytics comet_ml
+   ```
 
 2. **Set up your Comet API Key**:
 
-    ```bash
-    export COMET_API_KEY=YOUR_API_KEY
-    ```
+   ```bash
+   export COMET_API_KEY=YOUR_API_KEY
+   ```
 
 3. **Authenticate with Comet in your Python code**:
 
-    ```python
-    import comet_ml
+   ```python
+   import comet_ml
 
-    comet_ml.login()
-    ```
+   comet_ml.login()
+   ```
 
 4. **Train your YOLO26 model and log metrics**:
 
-    ```python
-    from ultralytics import YOLO
+   ```python
+   from ultralytics import YOLO
 
-    model = YOLO("yolo26n.pt")
-    results = model.train(
-        data="coco8.yaml",
-        project="comet-example-yolo26-coco128",
-        batch=32,
-        save_period=1,
-        save_json=True,
-        epochs=3,
-    )
-    ```
+   model = YOLO("yolo26n.pt")
+   results = model.train(
+       data="coco8.yaml",
+       project="comet-example-yolo26-coco128",
+       batch=32,
+       save_period=1,
+       save_json=True,
+       epochs=3,
+   )
+   ```
 
 For more detailed instructions, refer to the [Comet configuration section](#configuring-comet).
 
@@ -310,43 +310,43 @@ Comet allows for extensive customization of its logging behavior using environme
 
 - **Change the number of image predictions logged**:
 
-    ```python
-    import os
+  ```python
+  import os
 
-    os.environ["COMET_MAX_IMAGE_PREDICTIONS"] = "200"
-    ```
+  os.environ["COMET_MAX_IMAGE_PREDICTIONS"] = "200"
+  ```
 
 - **Adjust batch logging interval**:
 
-    ```python
-    import os
+  ```python
+  import os
 
-    os.environ["COMET_EVAL_BATCH_LOGGING_INTERVAL"] = "4"
-    ```
+  os.environ["COMET_EVAL_BATCH_LOGGING_INTERVAL"] = "4"
+  ```
 
 - **Disable confusion matrix logging**:
 
-    ```python
-    import os
+  ```python
+  import os
 
-    os.environ["COMET_EVAL_LOG_CONFUSION_MATRIX"] = "false"
-    ```
+  os.environ["COMET_EVAL_LOG_CONFUSION_MATRIX"] = "false"
+  ```
 
 - **Set the Comet project name**:
 
-    ```python
-    import os
+  ```python
+  import os
 
-    os.environ["COMET_PROJECT_NAME"] = "my-yolo26-experiments"
-    ```
+  os.environ["COMET_PROJECT_NAME"] = "my-yolo26-experiments"
+  ```
 
 - **Set the logged model artifact name**:
 
-    ```python
-    import os
+  ```python
+  import os
 
-    os.environ["COMET_MODEL_NAME"] = "yolo26n-coco128"
-    ```
+  os.environ["COMET_MODEL_NAME"] = "yolo26n-coco128"
+  ```
 
 See the [Customizing Comet Logging](#customizing-comet-logging) section for the full list, including image prediction toggles, confidence score scaling, and online/offline mode.
 

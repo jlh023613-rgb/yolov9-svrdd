@@ -12,58 +12,58 @@ keywords: Ultralytics, YOLO, configuration, cfg2dict, get_cfg, check_cfg, save_d
 
 <br>
 
-## ::: ultralytics.cfg.__init__.cfg2dict
+## ::: ultralytics.cfg.**init**.cfg2dict
 
 <br><br><hr><br>
 
-## ::: ultralytics.cfg.__init__.get_cfg
+## ::: ultralytics.cfg.**init**.get_cfg
 
 <br><br><hr><br>
 
-## ::: ultralytics.cfg.__init__.check_cfg
+## ::: ultralytics.cfg.**init**.check_cfg
 
 <br><br><hr><br>
 
-## ::: ultralytics.cfg.__init__.get_save_dir
+## ::: ultralytics.cfg.**init**.get_save_dir
 
 <br><br><hr><br>
 
-## ::: ultralytics.cfg.__init__._handle_deprecation
+## ::: ultralytics.cfg.**init**._handle_deprecation
 
 <br><br><hr><br>
 
-## ::: ultralytics.cfg.__init__.check_dict_alignment
+## ::: ultralytics.cfg.**init**.check_dict_alignment
 
 <br><br><hr><br>
 
-## ::: ultralytics.cfg.__init__.merge_equals_args
+## ::: ultralytics.cfg.**init**.merge_equals_args
 
 <br><br><hr><br>
 
-## ::: ultralytics.cfg.__init__.handle_yolo_login
+## ::: ultralytics.cfg.**init**.handle_yolo_login
 
 <br><br><hr><br>
 
-## ::: ultralytics.cfg.__init__.handle_yolo_settings
+## ::: ultralytics.cfg.**init**.handle_yolo_settings
 
 <br><br><hr><br>
 
-## ::: ultralytics.cfg.__init__.handle_yolo_solutions
+## ::: ultralytics.cfg.**init**.handle_yolo_solutions
 
 <br><br><hr><br>
 
-## ::: ultralytics.cfg.__init__.parse_key_value_pair
+## ::: ultralytics.cfg.**init**.parse_key_value_pair
 
 <br><br><hr><br>
 
-## ::: ultralytics.cfg.__init__.smart_value
+## ::: ultralytics.cfg.**init**.smart_value
 
 <br><br><hr><br>
 
-## ::: ultralytics.cfg.__init__.entrypoint
+## ::: ultralytics.cfg.**init**.entrypoint
 
 <br><br><hr><br>
 
-## ::: ultralytics.cfg.__init__.copy_default_cfg
+## ::: ultralytics.cfg.**init**.copy_default_cfg
 
 <br><br>
