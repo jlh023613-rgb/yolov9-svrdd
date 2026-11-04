@@ -25,8 +25,8 @@ Let's get started.
 - This guide assumes that annotation files are locally available.
 
 - For our demonstration, we use the [Fruit Detection](https://www.kaggle.com/datasets/lakshaytyagi01/fruit-detection/code) dataset.
-    - This dataset contains a total of 8479 images.
-    - It includes 6 class labels, each with its total instance counts listed below.
+  - This dataset contains a total of 8479 images.
+  - It includes 6 class labels, each with its total instance counts listed below.
 
 | Class Label | Instance Count |
 | :---------- | :------------: |
@@ -38,19 +38,19 @@ Let's get started.
 | Watermelon  |      1976      |
 
 - Necessary Python packages include:
-    - `ultralytics`
-    - `sklearn`
-    - `pandas`
-    - `pyyaml`
+  - `ultralytics`
+  - `sklearn`
+  - `pandas`
+  - `pyyaml`
 
 - This tutorial operates with `k=5` folds. However, you should determine the best number of folds for your specific dataset.
 
 1. Initiate a new Python virtual environment (`venv`) for your project and activate it. Use `pip` (or your preferred package manager) to install:
-    - The Ultralytics library: `pip install -U ultralytics`. Alternatively, you can clone the official [repo](https://github.com/ultralytics/ultralytics).
-    - Scikit-learn, pandas, and PyYAML: `pip install -U scikit-learn pandas pyyaml`.
+   - The Ultralytics library: `pip install -U ultralytics`. Alternatively, you can clone the official [repo](https://github.com/ultralytics/ultralytics).
+   - Scikit-learn, pandas, and PyYAML: `pip install -U scikit-learn pandas pyyaml`.
 
 2. Verify that your annotations are in the [YOLO detection format](../datasets/detect/index.md).
-    - For this tutorial, all annotation files are found in the `Fruit-Detection/labels` directory.
+   - For this tutorial, all annotation files are found in the `Fruit-Detection/labels` directory.
 
 ## Generating Feature Vectors for Object Detection Dataset
 
@@ -58,139 +58,139 @@ Let's get started.
 
 2. Load the configured training and validation images through the package dataset owner, leaving the test split untouched.
 
-    ```python
-    from pathlib import Path
+   ```python
+   from pathlib import Path
 
-    from ultralytics.data.dataset import YOLODataset
-    from ultralytics.data.utils import check_det_dataset
+   from ultralytics.data.dataset import YOLODataset
+   from ultralytics.data.utils import check_det_dataset
 
-    yaml_file = "path/to/data.yaml"
-    data = check_det_dataset(yaml_file)
-    dataset_path = Path(data["path"])
-    sources = []
-    for split in ("train", "val"):
-        source = data.get(split)
-        if source:
-            sources.extend(source if isinstance(source, list) else [source])
-    dataset = YOLODataset(sources, data=data, augment=False)
-    images = [Path(p) for p in dataset.im_files]
-    ```
+   yaml_file = "path/to/data.yaml"
+   data = check_det_dataset(yaml_file)
+   dataset_path = Path(data["path"])
+   sources = []
+   for split in ("train", "val"):
+       source = data.get(split)
+       if source:
+           sources.extend(source if isinstance(source, list) else [source])
+   dataset = YOLODataset(sources, data=data, augment=False)
+   images = [Path(p) for p in dataset.im_files]
+   ```
 
 3. Now, read the contents of the dataset YAML file and extract the indices of the class labels.
 
-    ```python
-    classes = data["names"]
-    cls_idx = sorted(classes.keys())
-    ```
+   ```python
+   classes = data["names"]
+   cls_idx = sorted(classes.keys())
+   ```
 
 4. Initialize an empty `pandas` DataFrame.
 
-    ```python
-    import pandas as pd
+   ```python
+   import pandas as pd
 
-    labels_df = pd.DataFrame(0.0, columns=cls_idx, index=images)
-    ```
+   labels_df = pd.DataFrame(0.0, columns=cls_idx, index=images)
+   ```
 
 5. Count the instances of each class-label present in the annotation files.
 
-    ```python
-    from collections import Counter
+   ```python
+   from collections import Counter
 
-    for image, label in zip(images, dataset.labels):
-        lbl_counter = Counter(label["cls"].flatten().astype(int))
-        labels_df.loc[image, list(lbl_counter)] = list(lbl_counter.values())
-    ```
+   for image, label in zip(images, dataset.labels):
+       lbl_counter = Counter(label["cls"].flatten().astype(int))
+       labels_df.loc[image, list(lbl_counter)] = list(lbl_counter.values())
+   ```
 
 6. The following is a sample view of the populated DataFrame:
 
-    ```text
-                                                           0    1    2    3    4    5
-    '0000a16e4b057580_jpg.rf.00ab48988370f64f5ca8ea4...'  0.0  0.0  0.0  0.0  0.0  7.0
-    '0000a16e4b057580_jpg.rf.7e6dce029fb67f01eb19aa7...'  0.0  0.0  0.0  0.0  0.0  7.0
-    '0000a16e4b057580_jpg.rf.bc4d31cdcbe229dd022957a...'  0.0  0.0  0.0  0.0  0.0  7.0
-    '00020ebf74c4881c_jpg.rf.508192a0a97aa6c4a3b6882...'  0.0  0.0  0.0  1.0  0.0  0.0
-    '00020ebf74c4881c_jpg.rf.5af192a2254c8ecc4188a25...'  0.0  0.0  0.0  1.0  0.0  0.0
-     ...                                                  ...  ...  ...  ...  ...  ...
-    'ff4cd45896de38be_jpg.rf.c4b5e967ca10c7ced3b9e97...'  0.0  0.0  0.0  0.0  0.0  2.0
-    'ff4cd45896de38be_jpg.rf.ea4c1d37d2884b3e3cbce08...'  0.0  0.0  0.0  0.0  0.0  2.0
-    'ff5fd9c3c624b7dc_jpg.rf.bb519feaa36fc4bf630a033...'  1.0  0.0  0.0  0.0  0.0  0.0
-    'ff5fd9c3c624b7dc_jpg.rf.f0751c9c3aa4519ea3c9d6a...'  1.0  0.0  0.0  0.0  0.0  0.0
-    'fffe28b31f2a70d4_jpg.rf.7ea16bd637ba0711c53b540...'  0.0  6.0  0.0  0.0  0.0  0.0
-    ```
+   ```text
+                                                          0    1    2    3    4    5
+   '0000a16e4b057580_jpg.rf.00ab48988370f64f5ca8ea4...'  0.0  0.0  0.0  0.0  0.0  7.0
+   '0000a16e4b057580_jpg.rf.7e6dce029fb67f01eb19aa7...'  0.0  0.0  0.0  0.0  0.0  7.0
+   '0000a16e4b057580_jpg.rf.bc4d31cdcbe229dd022957a...'  0.0  0.0  0.0  0.0  0.0  7.0
+   '00020ebf74c4881c_jpg.rf.508192a0a97aa6c4a3b6882...'  0.0  0.0  0.0  1.0  0.0  0.0
+   '00020ebf74c4881c_jpg.rf.5af192a2254c8ecc4188a25...'  0.0  0.0  0.0  1.0  0.0  0.0
+    ...                                                  ...  ...  ...  ...  ...  ...
+   'ff4cd45896de38be_jpg.rf.c4b5e967ca10c7ced3b9e97...'  0.0  0.0  0.0  0.0  0.0  2.0
+   'ff4cd45896de38be_jpg.rf.ea4c1d37d2884b3e3cbce08...'  0.0  0.0  0.0  0.0  0.0  2.0
+   'ff5fd9c3c624b7dc_jpg.rf.bb519feaa36fc4bf630a033...'  1.0  0.0  0.0  0.0  0.0  0.0
+   'ff5fd9c3c624b7dc_jpg.rf.f0751c9c3aa4519ea3c9d6a...'  1.0  0.0  0.0  0.0  0.0  0.0
+   'fffe28b31f2a70d4_jpg.rf.7ea16bd637ba0711c53b540...'  0.0  6.0  0.0  0.0  0.0  0.0
+   ```
 
 The rows use absolute image paths, and the columns correspond to class-label indices. Missing labels remain all-zero background rows. This data structure enables the application of [K-Fold Cross Validation](https://www.ultralytics.com/glossary/cross-validation) to an object detection dataset.
 
 ## K-Fold Dataset Split
 
 1. Now we will use the `KFold` class from `sklearn.model_selection` to generate `k` splits of the dataset.
-    - Important:
-        - Setting `shuffle=True` ensures a randomized distribution of classes in your splits.
-        - By setting `random_state=M` where `M` is a chosen integer, you can obtain repeatable results.
+   - Important:
+     - Setting `shuffle=True` ensures a randomized distribution of classes in your splits.
+     - By setting `random_state=M` where `M` is a chosen integer, you can obtain repeatable results.
 
-    ```python
-    from sklearn.model_selection import KFold
+   ```python
+   from sklearn.model_selection import KFold
 
-    ksplit = 5
-    kf = KFold(n_splits=ksplit, shuffle=True, random_state=20)  # setting random_state for repeatable results
+   ksplit = 5
+   kf = KFold(n_splits=ksplit, shuffle=True, random_state=20)  # setting random_state for repeatable results
 
-    kfolds = list(kf.split(labels_df))
-    ```
+   kfolds = list(kf.split(labels_df))
+   ```
 
 2. The dataset has now been split into `k` folds, each having a list of `train` and `val` indices. We will construct a DataFrame to display these results more clearly.
 
-    ```python
-    folds = [f"split_{n}" for n in range(1, ksplit + 1)]
-    folds_df = pd.DataFrame(index=labels_df.index, columns=folds)
+   ```python
+   folds = [f"split_{n}" for n in range(1, ksplit + 1)]
+   folds_df = pd.DataFrame(index=labels_df.index, columns=folds)
 
-    for i, (train, val) in enumerate(kfolds, start=1):
-        folds_df.loc[labels_df.index[train], f"split_{i}"] = "train"
-        folds_df.loc[labels_df.index[val], f"split_{i}"] = "val"
-    ```
+   for i, (train, val) in enumerate(kfolds, start=1):
+       folds_df.loc[labels_df.index[train], f"split_{i}"] = "train"
+       folds_df.loc[labels_df.index[val], f"split_{i}"] = "val"
+   ```
 
 3. Now we will calculate the distribution of class labels for each fold as a ratio of the classes present in `val` to those present in `train`.
 
-    ```python
-    fold_lbl_distrb = pd.DataFrame(index=folds, columns=cls_idx)
+   ```python
+   fold_lbl_distrb = pd.DataFrame(index=folds, columns=cls_idx)
 
-    for n, (train_indices, val_indices) in enumerate(kfolds, start=1):
-        train_totals = labels_df.iloc[train_indices].sum()
-        val_totals = labels_df.iloc[val_indices].sum()
+   for n, (train_indices, val_indices) in enumerate(kfolds, start=1):
+       train_totals = labels_df.iloc[train_indices].sum()
+       val_totals = labels_df.iloc[val_indices].sum()
 
-        # To avoid division by zero, we add a small value (1E-7) to the denominator
-        ratio = val_totals / (train_totals + 1e-7)
-        fold_lbl_distrb.loc[f"split_{n}"] = ratio
-    ```
+       # To avoid division by zero, we add a small value (1E-7) to the denominator
+       ratio = val_totals / (train_totals + 1e-7)
+       fold_lbl_distrb.loc[f"split_{n}"] = ratio
+   ```
 
-    The ideal scenario is for all class ratios to be reasonably similar for each split and across classes. This, however, will be subject to the specifics of your dataset.
+   The ideal scenario is for all class ratios to be reasonably similar for each split and across classes. This, however, will be subject to the specifics of your dataset.
 
 4. Write image lists and a dataset YAML for each split. Text lists avoid copying the dataset `k` times.
 
-    ```python
-    import yaml
+   ```python
+   import yaml
 
-    save_path = dataset_path.parent / f"{ksplit}-Fold_Cross-val"
-    save_path.mkdir(parents=True, exist_ok=True)
-    ds_yamls = []
+   save_path = dataset_path.parent / f"{ksplit}-Fold_Cross-val"
+   save_path.mkdir(parents=True, exist_ok=True)
+   ds_yamls = []
 
-    for split in folds_df.columns:
-        for partition in ("train", "val"):
-            split_images = folds_df.index[folds_df[split] == partition]
-            paths = "\n".join(map(str, split_images))
-            (save_path / f"{split}_{partition}.txt").write_text(f"{paths}\n")
+   for split in folds_df.columns:
+       for partition in ("train", "val"):
+           split_images = folds_df.index[folds_df[split] == partition]
+           paths = "\n".join(map(str, split_images))
+           (save_path / f"{split}_{partition}.txt").write_text(f"{paths}\n")
 
-        dataset_yaml = save_path / f"{split}.yaml"
-        ds_yamls.append(dataset_yaml)
-        with open(dataset_yaml, "w") as ds_y:
-            yaml.safe_dump(
-                {
-                    "path": save_path.as_posix(),
-                    "train": f"{split}_train.txt",
-                    "val": f"{split}_val.txt",
-                    "names": classes,
-                },
-                ds_y,
-            )
-    ```
+       dataset_yaml = save_path / f"{split}.yaml"
+       ds_yamls.append(dataset_yaml)
+       with open(dataset_yaml, "w") as ds_y:
+           yaml.safe_dump(
+               {
+                   "path": save_path.as_posix(),
+                   "train": f"{split}_train.txt",
+                   "val": f"{split}_val.txt",
+                   "names": classes,
+               },
+               ds_y,
+           )
+   ```
 
 ## Save Records (Optional)
 
@@ -205,38 +205,38 @@ fold_lbl_distrb.to_csv(save_path / "kfold_label_distribution.csv")
 
 1. First, load the YOLO model.
 
-    ```python
-    from ultralytics import YOLO
+   ```python
+   from ultralytics import YOLO
 
-    weights_path = "path/to/weights.pt"  # use yolo26n.pt for a small model
-    model = YOLO(weights_path, task="detect")
-    ```
+   weights_path = "path/to/weights.pt"  # use yolo26n.pt for a small model
+   model = YOLO(weights_path, task="detect")
+   ```
 
 2. Next, iterate over the dataset YAML files to run training. The results will be saved to a directory specified by the `project` and `name` arguments. By default, this directory is 'runs/detect/train#' where # is an integer index.
 
-    ```python
-    results = {}
+   ```python
+   results = {}
 
-    # Define your additional arguments here
-    batch = 16
-    project = "kfold_demo"
-    epochs = 100
+   # Define your additional arguments here
+   batch = 16
+   project = "kfold_demo"
+   epochs = 100
 
-    for k, dataset_yaml in enumerate(ds_yamls):
-        model = YOLO(weights_path, task="detect")
-        results[k] = model.train(
-            data=dataset_yaml, epochs=epochs, batch=batch, project=project, name=f"fold_{k + 1}"
-        )  # include any additional train arguments
-    ```
+   for k, dataset_yaml in enumerate(ds_yamls):
+       model = YOLO(weights_path, task="detect")
+       results[k] = model.train(
+           data=dataset_yaml, epochs=epochs, batch=batch, project=project, name=f"fold_{k + 1}"
+       )  # include any additional train arguments
+   ```
 
 3. You can also use [Ultralytics data.split.autosplit](../reference/data/split.md) function for automatic dataset splitting:
 
-    ```python
-    from ultralytics.data.split import autosplit
+   ```python
+   from ultralytics.data.split import autosplit
 
-    # Automatically split dataset into train/val/test
-    autosplit(path="path/to/images", weights=(0.8, 0.2, 0.0), annotated_only=True)
-    ```
+   # Automatically split dataset into train/val/test
+   autosplit(path="path/to/images", weights=(0.8, 0.2, 0.0), annotated_only=True)
+   ```
 
 ## Conclusion
 

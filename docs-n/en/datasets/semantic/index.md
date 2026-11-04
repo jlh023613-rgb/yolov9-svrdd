@@ -122,9 +122,9 @@ val: images/val
 masks_dir: masks
 
 names:
-    0: background
-    1: road
-    2: building
+  0: background
+  1: road
+  2: building
 ```
 
 ### Option B — Polygon labels
@@ -140,8 +140,8 @@ train: images/train
 val: images/val
 
 names:
-    0: person
-    1: car
+  0: person
+  1: car
 ```
 
 [Ultralytics Platform](https://platform.ultralytics.com) provides a polygon annotation tool for the semantic task, plus SAM-assisted Smart annotation — annotate directly in the browser and export or train on the resulting polygon-labeled dataset without setting up this layout by hand.

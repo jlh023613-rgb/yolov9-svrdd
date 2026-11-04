@@ -42,14 +42,14 @@ Vertex AI expects your container to implement two specific endpoints:
 1. **Health** endpoint (`/health`): Must return HTTP status `200 OK` when service is ready.
 2. **Predict** endpoint (`/predict`): Accepts structured prediction requests with **base64-encoded** images and optional parameters. [Payload size limits](https://docs.cloud.google.com/gemini-enterprise-agent-platform/machine-learning/predictions/choose-endpoint-type) apply depending on the endpoint type.
 
-    Request payloads for the `/predict` endpoint should follow this JSON structure:
+   Request payloads for the `/predict` endpoint should follow this JSON structure:
 
-    ```json
-    {
-        "instances": [{ "image": "base64_encoded_image" }],
-        "parameters": { "confidence": 0.5 }
-    }
-    ```
+   ```json
+   {
+     "instances": [{ "image": "base64_encoded_image" }],
+     "parameters": { "confidence": 0.5 }
+   }
+   ```
 
 ### Project folder structure
 

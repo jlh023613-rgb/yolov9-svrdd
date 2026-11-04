@@ -179,25 +179,25 @@ To integrate Weights & Biases with Ultralytics YOLO26:
 
 1. Install the required packages:
 
-    ```bash
-    pip install -U ultralytics wandb
-    yolo settings wandb=True
-    ```
+   ```bash
+   pip install -U ultralytics wandb
+   yolo settings wandb=True
+   ```
 
 2. Log in to your Weights & Biases account:
 
-    ```bash
-    wandb login
-    ```
+   ```bash
+   wandb login
+   ```
 
 3. Train your YOLO26 model with W&B logging enabled:
 
-    ```python
-    from ultralytics import YOLO
+   ```python
+   from ultralytics import YOLO
 
-    model = YOLO("yolo26n.pt")
-    model.train(data="coco8.yaml", epochs=5, project="ultralytics", name="yolo26n")
-    ```
+   model = YOLO("yolo26n.pt")
+   model.train(data="coco8.yaml", epochs=5, project="ultralytics", name="yolo26n")
+   ```
 
 This will automatically log metrics, hyperparameters, and model artifacts to your W&B project.
 

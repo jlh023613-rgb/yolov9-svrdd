@@ -266,23 +266,23 @@ To tune the hyperparameters of your Ultralytics YOLO26 model using Ray Tune, fol
 
 1. **Install the required packages:**
 
-    ```bash
-    pip install -U ultralytics "ray[tune]" optuna
-    pip install wandb # optional for logging
-    yolo settings wandb=True
-    ```
+   ```bash
+   pip install -U ultralytics "ray[tune]" optuna
+   pip install wandb # optional for logging
+   yolo settings wandb=True
+   ```
 
 2. **Load your YOLO26 model and start tuning:**
 
-    ```python
-    from ultralytics import YOLO
+   ```python
+   from ultralytics import YOLO
 
-    # Load a YOLO26 model
-    model = YOLO("yolo26n.pt")
+   # Load a YOLO26 model
+   model = YOLO("yolo26n.pt")
 
-    # Start tuning with the COCO8 dataset
-    result_grid = model.tune(data="coco8.yaml", use_ray=True)
-    ```
+   # Start tuning with the COCO8 dataset
+   result_grid = model.tune(data="coco8.yaml", use_ray=True)
+   ```
 
 This utilizes Ray Tune's advanced search strategies and parallelism to efficiently optimize your model's hyperparameters. For more information, check out the [Ray Tune documentation](https://docs.ray.io/en/latest/tune/index.html).
 
@@ -312,23 +312,23 @@ To integrate Weights & Biases (W&B) with your Ultralytics YOLO26 tuning process:
 
 1. **Install W&B:**
 
-    ```bash
-    pip install wandb
-    wandb login
-    yolo settings wandb=True
-    ```
+   ```bash
+   pip install wandb
+   wandb login
+   yolo settings wandb=True
+   ```
 
 2. **Run the tuner:**
 
-    ```python
-    from ultralytics import YOLO
+   ```python
+   from ultralytics import YOLO
 
-    # Load YOLO model
-    model = YOLO("yolo26n.pt")
+   # Load YOLO model
+   model = YOLO("yolo26n.pt")
 
-    # Each Ray trial creates its own W&B run in this project
-    result_grid = model.tune(data="coco8.yaml", project="YOLO-Tuning", use_ray=True)
-    ```
+   # Each Ray trial creates its own W&B run in this project
+   result_grid = model.tune(data="coco8.yaml", project="YOLO-Tuning", use_ray=True)
+   ```
 
 This setup will allow you to monitor the tuning process, track hyperparameter configurations, and visualize results in W&B.
 

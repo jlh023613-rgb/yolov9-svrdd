@@ -8,8 +8,8 @@ from unittest import mock
 
 import pytest
 import torch
-
 from tests import MODEL, SOURCE, TASK_MODEL_DATA
+
 from ultralytics import YOLO
 from ultralytics.cfg import get_cfg
 from ultralytics.engine.exporter import Exporter
