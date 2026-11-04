@@ -49,7 +49,9 @@ TRAIN_SETTINGS = dict(
 def snapshot_experiment(trainer):
     """在训练开始时保存实验来源，避免中途停止后缺失配置和数据划分记录。"""
     run_dir = Path(trainer.save_dir)
-    pretrained_weights = Path(trainer.args.model)
+    pretrained_weights = Path(
+        trainer.args.pretrained if isinstance(trainer.args.pretrained, (str, Path)) else trainer.args.model
+    )
     shutil.copy2(__file__, run_dir / "script_snapshot.py")
     shutil.copy2(DATA, run_dir / "data_snapshot.yaml")
     splits, manifests = {}, {}

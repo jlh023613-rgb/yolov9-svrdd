@@ -26,6 +26,7 @@ __all__ = (
     "PSA",
     "SPP",
     "SPPELAN",
+    "SPPELANLSK",
     "SPPF",
     "AConv",
     "ADown",
@@ -985,6 +986,31 @@ class SPPELAN(nn.Module):
         y = [self.cv1(x)]
         y.extend(m(y[-1]) for m in [self.cv2, self.cv3, self.cv4])
         return self.cv5(torch.cat(y, 1))
+
+
+class SPPELANLSK(SPPELAN):
+    """Apply LSKNet spatial kernel selection to the output of an SPP-ELAN block."""
+
+    def __init__(self, c1: int, c2: int, c3: int, k: int = 5):
+        """Initialize the pooling block and its two receptive-field branches."""
+        super().__init__(c1, c2, c3, k)
+        self.local = nn.Conv2d(c2, c2, 5, padding=2, groups=c2)
+        self.context = nn.Conv2d(c2, c2, 7, padding=9, dilation=3, groups=c2)
+        self.local_proj = nn.Conv2d(c2, c2 // 2, 1)
+        self.context_proj = nn.Conv2d(c2, c2 // 2, 1)
+        self.select = nn.Conv2d(2, 2, 7, padding=3)
+        self.expand = nn.Conv2d(c2 // 2, c2, 1)
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        """Weight local and wider context at each position before gating the pooled features."""
+        x = super().forward(x)
+        local = self.local(x)
+        context = self.context_proj(self.context(local))
+        local = self.local_proj(local)
+        features = torch.cat((local, context), dim=1)
+        pooled = torch.cat((features.mean(1, keepdim=True), features.max(1, keepdim=True).values), dim=1)
+        local_weight, context_weight = self.select(pooled).sigmoid().chunk(2, dim=1)
+        return x * self.expand(local * local_weight + context * context_weight)
 
 
 class CBLinear(nn.Module):
