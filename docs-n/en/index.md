@@ -78,83 +78,83 @@ See the [Quickstart](quickstart.md) guide for every installation method and your
 
 - :fontawesome-solid-brain:{ .lg .middle } &nbsp; **Train a model on your own dataset**
 
-    ***
+  ***
 
-    Fine-tune a pretrained YOLO26 model on your own dataset, tuning augmentation and hyperparameters for multi-GPU training
+  Fine-tune a pretrained YOLO26 model on your own dataset, tuning augmentation and hyperparameters for multi-GPU training
 
-    ***
+  ***
 
-    [:octicons-arrow-right-24: Train a custom model](modes/train.md)
+  [:octicons-arrow-right-24: Train a custom model](modes/train.md)
 
 - :material-image:{ .lg .middle } &nbsp; **Run a model on your images or video**
 
-    ***
+  ***
 
-    Load a pretrained model and get bounding boxes, masks, or keypoints in a few lines of Python or a single CLI command
+  Load a pretrained model and get bounding boxes, masks, or keypoints in a few lines of Python or a single CLI command
 
-    ***
+  ***
 
-    [:octicons-arrow-right-24: Predict on new data](modes/predict.md)
+  [:octicons-arrow-right-24: Predict on new data](modes/predict.md)
 
 - :material-play-circle:{ .lg .middle } &nbsp; **Track objects across video frames**
 
-    ***
+  ***
 
-    Track objects with persistent IDs using TrackTrack (default), BoT-SORT, ByteTrack, OC-SORT, Deep OC-SORT, or FastTracker
+  Track objects with persistent IDs using TrackTrack (default), BoT-SORT, ByteTrack, OC-SORT, Deep OC-SORT, or FastTracker
 
-    ***
+  ***
 
-    [:octicons-arrow-right-24: Multi-object tracking](modes/track.md)
+  [:octicons-arrow-right-24: Multi-object tracking](modes/track.md)
 
 - :material-apps:{ .lg .middle } &nbsp; **Run a ready-made vision application**
 
-    ***
+  ***
 
-    Ready-made vision apps for object counting, heatmaps, queue management, security alarms, and workouts, no training required
+  Ready-made vision apps for object counting, heatmaps, queue management, security alarms, and workouts, no training required
 
-    ***
+  ***
 
-    [:octicons-arrow-right-24: Explore Solutions](solutions/index.md)
+  [:octicons-arrow-right-24: Explore Solutions](solutions/index.md)
 
 - :material-rocket-launch:{ .lg .middle } &nbsp; **Deploy your model**
 
-    ***
+  ***
 
-    Export trained models to ONNX, TensorRT, or OpenVINO for fast inference on edge devices, mobile hardware, and cloud servers
+  Export trained models to ONNX, TensorRT, or OpenVINO for fast inference on edge devices, mobile hardware, and cloud servers
 
-    ***
+  ***
 
-    [:octicons-arrow-right-24: Export and deploy](modes/export.md)
+  [:octicons-arrow-right-24: Export and deploy](modes/export.md)
 
 - :material-magnify-expand:{ .lg .middle } &nbsp; **Pick the right model**
 
-    ***
+  ***
 
-    Compare YOLO26, YOLO11, SAM 3, RT-DETR, and every other supported architecture by speed, accuracy, and use case
+  Compare YOLO26, YOLO11, SAM 3, RT-DETR, and every other supported architecture by speed, accuracy, and use case
 
-    ***
+  ***
 
-    [:octicons-arrow-right-24: Browse all models](models/index.md)
+  [:octicons-arrow-right-24: Browse all models](models/index.md)
 
 - :material-book-open-variant:{ .lg .middle } &nbsp; **Look up the Python API**
 
-    ***
+  ***
 
-    Look up classes, functions, and method signatures for the Python API, auto-generated from source on every new release
+  Look up classes, functions, and method signatures for the Python API, auto-generated from source on every new release
 
-    ***
+  ***
 
-    [:octicons-arrow-right-24: API Reference](reference/index.md)
+  [:octicons-arrow-right-24: API Reference](reference/index.md)
 
 - :rocket:{ .lg .middle } &nbsp; **What's new: YOLO26**
 
-    ***
+  ***
 
-    Ultralytics' latest released model family delivers optional NMS-free end-to-end inference and an improved accuracy-latency tradeoff over YOLO11
+  Ultralytics' latest released model family delivers optional NMS-free end-to-end inference and an improved accuracy-latency tradeoff over YOLO11
 
-    ***
+  ***
 
-    [:octicons-arrow-right-24: Meet YOLO26](models/yolo26.md)
+  [:octicons-arrow-right-24: Meet YOLO26](models/yolo26.md)
 
 </div>
 

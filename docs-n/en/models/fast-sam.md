@@ -229,56 +229,56 @@ FastSAM is also available directly from the [CASIA-LMC-Lab/FastSAM](https://gith
 
 1. Clone the FastSAM repository:
 
-    ```bash
-    git clone https://github.com/CASIA-LMC-Lab/FastSAM.git
-    ```
+   ```bash
+   git clone https://github.com/CASIA-LMC-Lab/FastSAM.git
+   ```
 
 2. Create and activate a Conda environment with Python 3.9:
 
-    ```bash
-    conda create -n FastSAM python=3.9
-    conda activate FastSAM
-    ```
+   ```bash
+   conda create -n FastSAM python=3.9
+   conda activate FastSAM
+   ```
 
 3. Navigate to the cloned repository and install the required packages:
 
-    ```bash
-    cd FastSAM
-    pip install -r requirements.txt
-    ```
+   ```bash
+   cd FastSAM
+   pip install -r requirements.txt
+   ```
 
 4. Install the CLIP model:
-    ```bash
-    pip install git+https://github.com/ultralytics/CLIP.git
-    ```
+   ```bash
+   pip install git+https://github.com/ultralytics/CLIP.git
+   ```
 
 ### Example Usage
 
 1. Download a [model checkpoint](https://drive.google.com/file/d/1m1sjY4ihXBU1fZXdQ-Xdj-mDltW-2Rqv/view?usp=sharing).
 
 2. Use FastSAM for inference. Example commands:
-    - Segment everything in an image:
+   - Segment everything in an image:
 
-        ```bash
-        python Inference.py --model_path ./weights/FastSAM.pt --img_path ./images/dogs.jpg
-        ```
+     ```bash
+     python Inference.py --model_path ./weights/FastSAM.pt --img_path ./images/dogs.jpg
+     ```
 
-    - Segment specific objects using text prompt:
+   - Segment specific objects using text prompt:
 
-        ```bash
-        python Inference.py --model_path ./weights/FastSAM.pt --img_path ./images/dogs.jpg --text_prompt "the yellow dog"
-        ```
+     ```bash
+     python Inference.py --model_path ./weights/FastSAM.pt --img_path ./images/dogs.jpg --text_prompt "the yellow dog"
+     ```
 
-    - Segment objects within a [bounding box](https://www.ultralytics.com/glossary/bounding-box) (provide box coordinates in xywh format):
+   - Segment objects within a [bounding box](https://www.ultralytics.com/glossary/bounding-box) (provide box coordinates in xywh format):
 
-        ```bash
-        python Inference.py --model_path ./weights/FastSAM.pt --img_path ./images/dogs.jpg --box_prompt "[570,200,230,400]"
-        ```
+     ```bash
+     python Inference.py --model_path ./weights/FastSAM.pt --img_path ./images/dogs.jpg --box_prompt "[570,200,230,400]"
+     ```
 
-    - Segment objects near specific points:
-        ```bash
-        python Inference.py --model_path ./weights/FastSAM.pt --img_path ./images/dogs.jpg --point_prompt "[[520,360],[620,300]]" --point_label "[1,0]"
-        ```
+   - Segment objects near specific points:
+     ```bash
+     python Inference.py --model_path ./weights/FastSAM.pt --img_path ./images/dogs.jpg --point_prompt "[[520,360],[620,300]]" --point_label "[1,0]"
+     ```
 
 Additionally, you can try FastSAM through the CASIA-LMC-Lab [Colab demo](https://colab.research.google.com/drive/1oX14f6IneGGw612WgVlAiy91UHwFAvr9?usp=sharing).
 

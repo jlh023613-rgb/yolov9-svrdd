@@ -98,24 +98,24 @@ By clicking on the URL link to the ClearML results page in the output of the usa
 #### Key Features of the ClearML Results Page
 
 - **Real-Time Metrics Tracking**
-    - Track critical metrics like loss, [accuracy](https://www.ultralytics.com/glossary/accuracy), and validation scores as they occur.
-    - Provides immediate feedback for timely model performance adjustments.
+  - Track critical metrics like loss, [accuracy](https://www.ultralytics.com/glossary/accuracy), and validation scores as they occur.
+  - Provides immediate feedback for timely model performance adjustments.
 
 - **Experiment Comparison**
-    - Compare different training runs side-by-side.
-    - Essential for [hyperparameter tuning](https://www.ultralytics.com/glossary/hyperparameter-tuning) and identifying the most effective models.
+  - Compare different training runs side-by-side.
+  - Essential for [hyperparameter tuning](https://www.ultralytics.com/glossary/hyperparameter-tuning) and identifying the most effective models.
 
 - **Detailed Logs and Outputs**
-    - Access comprehensive logs, graphical representations of metrics, and console outputs.
-    - Gain a deeper understanding of model behavior and issue resolution.
+  - Access comprehensive logs, graphical representations of metrics, and console outputs.
+  - Gain a deeper understanding of model behavior and issue resolution.
 
 - **Resource Utilization Monitoring**
-    - Monitor the utilization of computational resources, including CPU, GPU, and memory.
-    - Key to optimizing training efficiency and costs.
+  - Monitor the utilization of computational resources, including CPU, GPU, and memory.
+  - Key to optimizing training efficiency and costs.
 
 - **Model Artifacts Management**
-    - View, download, and share model artifacts like trained models and checkpoints.
-    - Enhances collaboration and streamlines [model deployment](https://www.ultralytics.com/glossary/model-deployment) and sharing.
+  - View, download, and share model artifacts like trained models and checkpoints.
+  - Enhances collaboration and streamlines [model deployment](https://www.ultralytics.com/glossary/model-deployment) and sharing.
 
 For a visual walkthrough of what the ClearML Results Page looks like, watch the video below:
 
@@ -168,10 +168,10 @@ To prepare your dataset for ClearML, follow these steps:
 2. Copy the corresponding YAML file to the root of your dataset folder
 3. Upload your dataset using the ClearML Data tool:
 
-    ```bash
-    cd your_dataset_folder
-    clearml-data sync --project YOLO26 --name your_dataset_name --folder .
-    ```
+   ```bash
+   cd your_dataset_folder
+   clearml-data sync --project YOLO26 --name your_dataset_name --folder .
+   ```
 
 This command will create a versioned dataset in ClearML that can be referenced in your training scripts, ensuring reproducibility and easy access to your data.
 

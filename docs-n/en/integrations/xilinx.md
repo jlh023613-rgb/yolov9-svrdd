@@ -297,15 +297,15 @@ The exported directory is ready for AMD's Vitis AI compiler, which builds the `.
 1. **Prepare the host and board.** Compile on an x86-64 Linux host with AMD's [Vitis AI 6.3 Docker image for Versal AI Edge Gen 2](https://vitisai.docs.amd.com/projects/gen2/en/latest/docs/setup_and_installation/docker-setup.html) and an AMD AI Engine compiler license (see [AMD's licensing page](https://vitisai.docs.amd.com/projects/gen2/en/latest/docs/additional_information/license.html)). Set up the VEK385 with AMD's [board setup guide](https://vitisai.docs.amd.com/projects/gen2/en/latest/docs/setup_and_installation/board_setup.html).
 2. **Compile.** Inside the container, create an ONNX Runtime session with the Vitis AI Execution Provider, the same call AMD's [compilation guide](https://vitisai.docs.amd.com/projects/gen2/en/latest/docs/model_compilation/compiling.html) uses. It writes the `yolo26n/` cache with `yolo26n.rai` into the export directory:
 
-    ```python
-    import onnxruntime as ort
+   ```python
+   import onnxruntime as ort
 
-    d = "yolo26n_xilinx_model"
-    options = {"config_file": f"{d}/vitisai_config.json", "cache_dir": d, "cache_key": "yolo26n", "target": "VAIML"}
-    ort.InferenceSession(f"{d}/yolo26n.onnx", providers=["VitisAIExecutionProvider"], provider_options=[options])
-    ```
+   d = "yolo26n_xilinx_model"
+   options = {"config_file": f"{d}/vitisai_config.json", "cache_dir": d, "cache_key": "yolo26n", "target": "VAIML"}
+   ort.InferenceSession(f"{d}/yolo26n.onnx", providers=["VitisAIExecutionProvider"], provider_options=[options])
+   ```
 
-    Check `yolo26n_xilinx_model/yolo26n/final-vaiml-pass-summary.txt` for how much of the model runs on the NPU. For YOLO26n at 640, AMD's Vitis AI 6.3 compiler places 99.9% of the operators and of the compute on the VEK385 NPU in a single partition.
+   Check `yolo26n_xilinx_model/yolo26n/final-vaiml-pass-summary.txt` for how much of the model runs on the NPU. For YOLO26n at 640, AMD's Vitis AI 6.3 compiler places 99.9% of the operators and of the compute on the VEK385 NPU in a single partition.
 
 3. **Run on the board.** Copy the export directory to the VEK385. ONNX Runtime with the Vitis AI Execution Provider loads the compiled `yolo26n.rai` and runs it on the NPU, and `YOLO("yolo26n_xilinx_model")` selects this provider automatically when it is available.
 
@@ -410,18 +410,18 @@ YOLO26 applies [attention](https://www.ultralytics.com/glossary/attention-mechan
 1. **Accept the CPU blocks.** The compiled `.xmodel` then contains CPU subgraphs, so run it with AMD's [Graph Runner](https://docs.amd.com/r/en-US/ug1354-xilinx-ai-sdk/Developing-with-Vitis-AI-API_3-Graph-Runner), which executes DPU and CPU subgraphs together when a CPU implementation exists for every operator; otherwise you must implement and register the missing operators. At 20×20 the attention computation is small, but each extra transfer between the DPU and the CPU adds latency, so measure it on your board.
 2. **Use an attention-free YAML.** In your Hard-Swish YAML, replace the C2PSA layer with `nn.Identity` so the layer indices used by `Concat` and `Detect` stay valid, and disable attention in layer 22:
 
-    ```yaml
-    backbone:
-        # ... layers 0-9 unchanged
-        - [-1, 1, nn.Identity, []] # 10 C2PSA removed; keeps later layer indices valid
+   ```yaml
+   backbone:
+     # ... layers 0-9 unchanged
+     - [-1, 1, nn.Identity, []] # 10 C2PSA removed; keeps later layer indices valid
 
-    head:
-        # ... layers 11-21 unchanged
-        - [-1, 1, C3k2, [1024, True, 0.5, False]] # 22 (P5/32-large), attention disabled
-        - [[16, 19, 22], 1, Detect, [nc]] # Detect(P3, P4, P5)
-    ```
+   head:
+     # ... layers 11-21 unchanged
+     - [-1, 1, C3k2, [1024, True, 0.5, False]] # 22 (P5/32-large), attention disabled
+     - [[16, 19, 22], 1, Detect, [nc]] # Detect(P3, P4, P5)
+   ```
 
-    The exported ONNX graph then contains no MatMul or Softmax operators. The attention weights no longer apply (624 of 666 YOLO26n weights transfer), so fine-tune longer and compare accuracy with [Val mode](../modes/val.md).
+   The exported ONNX graph then contains no MatMul or Softmax operators. The attention weights no longer apply (624 of 666 YOLO26n weights transfer), so fine-tune longer and compare accuracy with [Val mode](../modes/val.md).
 
 3. **Use an attention-free model** such as [YOLOv8](../models/yolov8.md), which AMD has used in its own DPU examples.
 

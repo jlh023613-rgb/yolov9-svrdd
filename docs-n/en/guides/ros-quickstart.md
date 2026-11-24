@@ -59,15 +59,15 @@ Apart from the ROS environment, you will need to install the following dependenc
 
 - **[ROS NumPy package](https://github.com/eric-wieser/ros_numpy)**: This is required for fast conversion between ROS Image messages and NumPy arrays.
 
-    ```bash
-    pip install ros_numpy
-    ```
+  ```bash
+  pip install ros_numpy
+  ```
 
 - **Ultralytics package**:
 
-    ```bash
-    pip install ultralytics
-    ```
+  ```bash
+  pip install ultralytics
+  ```
 
 ## Using ROS2
 

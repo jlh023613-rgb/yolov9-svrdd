@@ -77,16 +77,16 @@ SAM 3 consists of a **detector** and **tracker** that share a Perception Encoder
 ### Core Components
 
 - **Detector**: [DETR-based architecture](rtdetr.md) for image-level concept detection
-    - Text encoder for noun phrase prompts
-    - Exemplar encoder for image-based prompts
-    - Fusion encoder to condition image features on prompts
-    - Novel **presence head** that decouples recognition ("what") from localization ("where")
-    - Mask head for generating instance segmentation masks
+  - Text encoder for noun phrase prompts
+  - Exemplar encoder for image-based prompts
+  - Fusion encoder to condition image features on prompts
+  - Novel **presence head** that decouples recognition ("what") from localization ("where")
+  - Mask head for generating instance segmentation masks
 
 - **Tracker**: Memory-based video segmentation inherited from [SAM 2](sam-2.md)
-    - Prompt encoder, mask decoder, memory encoder
-    - Memory bank for storing object appearance across frames
-    - Temporal disambiguation aided by techniques like a [Kalman filter](../reference/trackers/utils/kalman_filter.md) in multi-object settings
+  - Prompt encoder, mask decoder, memory encoder
+  - Memory bank for storing object appearance across frames
+  - Temporal disambiguation aided by techniques like a [Kalman filter](../reference/trackers/utils/kalman_filter.md) in multi-object settings
 
 - **Presence Token**: A learned global token that predicts whether the target concept is present in the image/frame, improving detection by separating recognition from localization.
 
