@@ -39,10 +39,10 @@ Before you start to follow this guide:
 
 - Visit our documentation, [Quick Start Guide: NVIDIA Jetson with Ultralytics YOLO26](nvidia-jetson.md) to set up your NVIDIA Jetson device with Ultralytics YOLO26
 - Install [DeepStream SDK](https://developer.nvidia.com/deepstream-getting-started) according to the JetPack version
-    - For JetPack 4.6.4, install [DeepStream 6.0.1](https://archive.docs.nvidia.com/metropolis/deepstream/6.0.1/dev-guide/text/DS_Quickstart.html)
-    - For JetPack 5.1.3, install [DeepStream 6.3](https://archive.docs.nvidia.com/metropolis/deepstream/6.3/dev-guide/text/DS_Quickstart.html)
-    - For JetPack 6.1, install [DeepStream 7.1](https://docs.nvidia.com/metropolis/deepstream/7.1/text/DS_Overview.html)
-    - For JetPack 7.1, install [DeepStream 9.0](https://docs.nvidia.com/metropolis/deepstream/9.0/text/DS_Overview.html)
+  - For JetPack 4.6.4, install [DeepStream 6.0.1](https://archive.docs.nvidia.com/metropolis/deepstream/6.0.1/dev-guide/text/DS_Quickstart.html)
+  - For JetPack 5.1.3, install [DeepStream 6.3](https://archive.docs.nvidia.com/metropolis/deepstream/6.3/dev-guide/text/DS_Quickstart.html)
+  - For JetPack 6.1, install [DeepStream 7.1](https://docs.nvidia.com/metropolis/deepstream/7.1/text/DS_Overview.html)
+  - For JetPack 7.1, install [DeepStream 9.0](https://docs.nvidia.com/metropolis/deepstream/9.0/text/DS_Overview.html)
 
 !!! tip
 
@@ -295,39 +295,39 @@ To set up multiple streams under a single DeepStream application, make the follo
 
 1. Change the rows and columns to build a grid display according to the number of streams you want to have. For example, for 4 streams, we can add 2 rows and 2 columns.
 
-    ```bash
-    [tiled-display]
-    rows=2
-    columns=2
-    ```
+   ```bash
+   [tiled-display]
+   rows=2
+   columns=2
+   ```
 
 2. Add a separate `[sourceN]` group for each stream, each with its own `uri` and `num-sources=1`.
 
-    ```bash
-    [source0]
-    enable=1
-    type=3
-    uri=file:///path/to/video1.mp4
-    num-sources=1
+   ```bash
+   [source0]
+   enable=1
+   type=3
+   uri=file:///path/to/video1.mp4
+   num-sources=1
 
-    [source1]
-    enable=1
-    type=3
-    uri=file:///path/to/video2.mp4
-    num-sources=1
+   [source1]
+   enable=1
+   type=3
+   uri=file:///path/to/video2.mp4
+   num-sources=1
 
-    [source2]
-    enable=1
-    type=3
-    uri=file:///path/to/video3.mp4
-    num-sources=1
+   [source2]
+   enable=1
+   type=3
+   uri=file:///path/to/video3.mp4
+   num-sources=1
 
-    [source3]
-    enable=1
-    type=3
-    uri=file:///path/to/video4.mp4
-    num-sources=1
-    ```
+   [source3]
+   enable=1
+   type=3
+   uri=file:///path/to/video4.mp4
+   num-sources=1
+   ```
 
 ### Run Multi-Stream Inference
 

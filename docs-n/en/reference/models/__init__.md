@@ -12,6 +12,6 @@ keywords: Ultralytics, ultralytics.models.__init__, API reference, YOLO, Python
 
 <br>
 
-## ::: ultralytics.models.__init__.__getattr__
+## ::: ultralytics.models.**init**.**getattr**
 
 <br><br>
