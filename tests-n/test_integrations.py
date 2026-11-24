@@ -6,8 +6,8 @@ import time
 from pathlib import Path
 
 import pytest
-
 from tests import SOURCE
+
 from ultralytics import YOLO, download
 from ultralytics.utils import ASSETS_URL, DATASETS_DIR, SETTINGS
 from ultralytics.utils.checks import check_requirements

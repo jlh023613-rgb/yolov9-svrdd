@@ -199,9 +199,9 @@ X-RateLimit-Reset: 2026-02-21T12:34:56.000Z
 
 ```json
 {
-    "error": "Rate limit exceeded, wait 12s",
-    "retryAfter": 12,
-    "resetAt": "2026-02-21T12:34:56.000Z"
+  "error": "Rate limit exceeded, wait 12s",
+  "retryAfter": 12,
+  "resetAt": "2026-02-21T12:34:56.000Z"
 }
 ```
 
@@ -225,9 +225,9 @@ collection, most alongside counts, and mutations return the changed identifiers.
 
 ```json
 {
-    "datasets": [{ "id": "65f1c0a2b3d4e5f601234567", "owner": "acme-vision", "dataset": "warehouse" }],
-    "total": 1,
-    "region": "us"
+  "datasets": [{ "id": "65f1c0a2b3d4e5f601234567", "owner": "acme-vision", "dataset": "warehouse" }],
+  "total": 1,
+  "region": "us"
 }
 ```
 
@@ -240,7 +240,7 @@ Every error response is a JSON object with an `error` message:
 
 ```json
 {
-    "error": "Dataset not found"
+  "error": "Dataset not found"
 }
 ```
 
@@ -320,28 +320,28 @@ Returns the owner's public datasets, plus private datasets when your key can vie
 
 ```json
 {
-    "datasets": [
-        {
-            "id": "65f1c0a2b3d4e5f601234567",
-            "owner": "acme-vision",
-            "dataset": "warehouse",
-            "name": "Warehouse",
-            "task": "detect",
-            "visibility": "private",
-            "imageCount": 1000,
-            "classCount": 2,
-            "classNames": ["person", "forklift"],
-            "splits": { "train": 800, "val": 200, "test": 0, "labeled": 1000 },
-            "annotationCount": 5400,
-            "starCount": 3,
-            "isStarred": false,
-            "status": "ready",
-            "createdAt": "2026-01-15T10:00:00Z",
-            "updatedAt": "2026-01-16T08:30:00Z"
-        }
-    ],
-    "total": 1,
-    "region": "us"
+  "datasets": [
+    {
+      "id": "65f1c0a2b3d4e5f601234567",
+      "owner": "acme-vision",
+      "dataset": "warehouse",
+      "name": "Warehouse",
+      "task": "detect",
+      "visibility": "private",
+      "imageCount": 1000,
+      "classCount": 2,
+      "classNames": ["person", "forklift"],
+      "splits": { "train": 800, "val": 200, "test": 0, "labeled": 1000 },
+      "annotationCount": 5400,
+      "starCount": 3,
+      "isStarred": false,
+      "status": "ready",
+      "createdAt": "2026-01-15T10:00:00Z",
+      "updatedAt": "2026-01-16T08:30:00Z"
+    }
+  ],
+  "total": 1,
+  "region": "us"
 }
 ```
 
@@ -370,14 +370,14 @@ POST /api/datasets
 
 ```json
 {
-    "dataset": "warehouse",
-    "name": "Warehouse",
-    "task": "detect",
-    "description": "Forklift and pedestrian safety dataset",
-    "classNames": ["person", "forklift"],
-    "visibility": "private",
-    "metadata": { "location": "factory-1", "reviewed": true },
-    "owner": "acme-vision"
+  "dataset": "warehouse",
+  "name": "Warehouse",
+  "task": "detect",
+  "description": "Forklift and pedestrian safety dataset",
+  "classNames": ["person", "forklift"],
+  "visibility": "private",
+  "metadata": { "location": "factory-1", "reviewed": true },
+  "owner": "acme-vision"
 }
 ```
 
@@ -407,10 +407,10 @@ A `dataset` slug that already exists in the workspace, including one in Trash, r
 
 ```json
 {
-    "id": "65f1c0a2b3d4e5f601234567",
-    "owner": "acme-vision",
-    "dataset": "warehouse",
-    "region": "us"
+  "id": "65f1c0a2b3d4e5f601234567",
+  "owner": "acme-vision",
+  "dataset": "warehouse",
+  "region": "us"
 }
 ```
 
@@ -426,10 +426,10 @@ PATCH /api/datasets/{owner}/{dataset}
 
 ```json
 {
-    "name": "Warehouse Safety",
-    "description": "New description",
-    "visibility": "public",
-    "metadata": { "location": "factory-2", "reviewed": true }
+  "name": "Warehouse Safety",
+  "description": "New description",
+  "visibility": "public",
+  "metadata": { "location": "factory-2", "reviewed": true }
 }
 ```
 
@@ -443,8 +443,8 @@ the serialized object to 500,000 characters.
 
 ```json
 {
-    "success": true,
-    "dataset": "warehouse-safety"
+  "success": true,
+  "dataset": "warehouse-safety"
 }
 ```
 
@@ -478,12 +478,12 @@ a dataset you own instead of creating a new one. `version` cannot be combined wi
 
 ```json
 {
-    "dataset": "warehouse-copy",
-    "name": "Warehouse Copy",
-    "description": "Cloned for experimentation",
-    "visibility": "private",
-    "license": "CC-BY-4.0",
-    "owner": "acme-vision"
+  "dataset": "warehouse-copy",
+  "name": "Warehouse Copy",
+  "description": "Cloned for experimentation",
+  "visibility": "private",
+  "license": "CC-BY-4.0",
+  "owner": "acme-vision"
 }
 ```
 
@@ -513,8 +513,8 @@ nothing changed since it was generated.
 
 ```json
 {
-    "downloadUrl": "https://storage.googleapis.com/...&signature=...",
-    "cached": true
+  "downloadUrl": "https://storage.googleapis.com/...&signature=...",
+  "cached": true
 }
 ```
 
@@ -536,8 +536,8 @@ version without preparing an NDJSON download; `downloadUrl` is then omitted. The
 
 ```json
 {
-    "description": "Added 500 training images",
-    "download": true
+  "description": "Added 500 training images",
+  "download": true
 }
 ```
 
@@ -545,9 +545,9 @@ version without preparing an NDJSON download; `downloadUrl` is then omitted. The
 
 ```json
 {
-    "version": 3,
-    "downloadUrl": "https://storage.googleapis.com/...&signature=...",
-    "reused": false
+  "version": 3,
+  "downloadUrl": "https://storage.googleapis.com/...&signature=...",
+  "reused": false
 }
 ```
 
@@ -566,8 +566,8 @@ PATCH /api/datasets/{owner}/{dataset}/export
 
 ```json
 {
-    "version": 2,
-    "description": "Fixed mislabeled classes"
+  "version": 2,
+  "description": "Fixed mislabeled classes"
 }
 ```
 
@@ -587,7 +587,7 @@ Rebuilds images, annotations, and classes from a saved version without copying i
 
 ```json
 {
-    "version": 2
+  "version": 2
 }
 ```
 
@@ -612,16 +612,16 @@ GET /api/datasets/{owner}/{dataset}/versions/compare?base={from}&head={to}
 
 ```json
 {
-    "summary": { "added": 0, "removed": 1, "modified": 1, "moved": 1, "labelsAdded": 1, "labelsRemoved": 2 },
-    "items": [
-        {
-            "hash": "b5c605c133f84c3024af7e652b135501",
-            "name": "000000000042",
-            "change": "moved",
-            "base": { "split": "val", "labelCount": 1 },
-            "head": { "split": "test", "labelCount": 1 }
-        }
-    ]
+  "summary": { "added": 0, "removed": 1, "modified": 1, "moved": 1, "labelsAdded": 1, "labelsRemoved": 2 },
+  "items": [
+    {
+      "hash": "b5c605c133f84c3024af7e652b135501",
+      "name": "000000000042",
+      "change": "moved",
+      "base": { "split": "val", "labelCount": 1 },
+      "head": { "split": "test", "labelCount": 1 }
+    }
+  ]
 }
 ```
 
@@ -648,38 +648,38 @@ which case `sampleSize` reports how many images contributed.
 
 ```json
 {
-    "classes": [{ "classId": 0, "count": 1500, "imageCount": 450 }],
-    "imageStats": {
-        "widthHistogram": [{ "bin": 640, "count": 120, "size": 1 }],
-        "heightHistogram": [{ "bin": 480, "count": 95, "size": 1 }],
-        "pointsHistogram": [{ "bin": 4, "count": 200, "size": 1 }],
-        "formatDistribution": { "jpg": 900, "png": 100 },
-        "fileSizeHistogram": [{ "bin": 250000, "count": 300, "size": 50000 }],
-        "objectsPerImageHistogram": [{ "bin": 5, "count": 210, "size": 1 }],
-        "bboxWidthHistogram": [{ "bin": 120, "count": 340, "size": 20 }],
-        "bboxHeightHistogram": [{ "bin": 90, "count": 300, "size": 20 }]
-    },
-    "locationHeatmap": {
-        "bins": [
-            [5, 10],
-            [8, 3]
-        ],
-        "maxCount": 50
-    },
-    "dimensionHeatmap": {
-        "bins": [
-            [2, 5],
-            [3, 1]
-        ],
-        "maxCount": 12,
-        "minWidth": 10,
-        "maxWidth": 1920,
-        "minHeight": 10,
-        "maxHeight": 1080
-    },
-    "classNames": ["person", "forklift"],
-    "cached": true,
-    "sampleSize": null
+  "classes": [{ "classId": 0, "count": 1500, "imageCount": 450 }],
+  "imageStats": {
+    "widthHistogram": [{ "bin": 640, "count": 120, "size": 1 }],
+    "heightHistogram": [{ "bin": 480, "count": 95, "size": 1 }],
+    "pointsHistogram": [{ "bin": 4, "count": 200, "size": 1 }],
+    "formatDistribution": { "jpg": 900, "png": 100 },
+    "fileSizeHistogram": [{ "bin": 250000, "count": 300, "size": 50000 }],
+    "objectsPerImageHistogram": [{ "bin": 5, "count": 210, "size": 1 }],
+    "bboxWidthHistogram": [{ "bin": 120, "count": 340, "size": 20 }],
+    "bboxHeightHistogram": [{ "bin": 90, "count": 300, "size": 20 }]
+  },
+  "locationHeatmap": {
+    "bins": [
+      [5, 10],
+      [8, 3]
+    ],
+    "maxCount": 50
+  },
+  "dimensionHeatmap": {
+    "bins": [
+      [2, 5],
+      [3, 1]
+    ],
+    "maxCount": 12,
+    "minWidth": 10,
+    "maxWidth": 1920,
+    "minHeight": 10,
+    "maxHeight": 1080
+  },
+  "classNames": ["person", "forklift"],
+  "cached": true,
+  "sampleSize": null
 }
 ```
 
@@ -695,8 +695,8 @@ POST /api/datasets/{owner}/{dataset}/classes/merge
 
 ```json
 {
-    "sourceClassIds": [2, 4],
-    "targetClassId": 1
+  "sourceClassIds": [2, 4],
+  "targetClassId": 1
 }
 ```
 
@@ -710,7 +710,7 @@ POST /api/datasets/{owner}/{dataset}/classes/delete
 
 ```json
 {
-    "classIds": [2, 4]
+  "classIds": [2, 4]
 }
 ```
 
@@ -734,9 +734,9 @@ Randomly reassigns images across splits. The three percentages must total 100.
 
 ```json
 {
-    "train": 80,
-    "val": 20,
-    "test": 0
+  "train": 80,
+  "val": 20,
+  "test": 0
 }
 ```
 
@@ -782,24 +782,24 @@ GET /api/datasets/{owner}/{dataset}/models
 
 ```json
 {
-    "models": [
-        {
-            "id": "65f1c0a2b3d4e5f601234599",
-            "owner": "acme-vision",
-            "project": "inspection",
-            "model": "v3",
-            "name": "v3",
-            "status": "completed",
-            "task": "detect",
-            "epochs": 100,
-            "bestEpoch": 87,
-            "metrics": { "mAP50": 0.85, "mAP50-95": 0.72, "precision": 0.88, "recall": 0.81 },
-            "startedAt": "2026-01-14T22:00:00Z",
-            "completedAt": "2026-01-15T10:00:00Z",
-            "createdAt": "2026-01-14T21:55:00Z"
-        }
-    ],
-    "count": 1
+  "models": [
+    {
+      "id": "65f1c0a2b3d4e5f601234599",
+      "owner": "acme-vision",
+      "project": "inspection",
+      "model": "v3",
+      "name": "v3",
+      "status": "completed",
+      "task": "detect",
+      "epochs": 100,
+      "bestEpoch": 87,
+      "metrics": { "mAP50": 0.85, "mAP50-95": 0.72, "precision": 0.88, "recall": 0.81 },
+      "startedAt": "2026-01-14T22:00:00Z",
+      "completedAt": "2026-01-15T10:00:00Z",
+      "createdAt": "2026-01-14T21:55:00Z"
+    }
+  ],
+  "count": 1
 }
 ```
 
@@ -834,26 +834,26 @@ GET /api/datasets/{owner}/{dataset}/images
 
 ```json
 {
-    "images": [
-        {
-            "id": "65f1c0a2b3d4e5f601234567",
-            "hash": "9f2c1d4b6a8e0f3c5d7b9a1e2f4c6d8b",
-            "ext": "jpg",
-            "name": "aisle-04",
-            "thumbnailUrl": "https://storage.googleapis.com/...&signature=...",
-            "width": 1920,
-            "height": 1080,
-            "split": "train",
-            "labelCount": 6,
-            "bytes": 284213,
-            "error": null
-        }
-    ],
-    "total": 1000,
-    "hasMore": true,
-    "classes": ["person", "forklift"],
-    "errorCount": 0,
-    "nextCursor": "65f1c0a2b3d4e5f601234567"
+  "images": [
+    {
+      "id": "65f1c0a2b3d4e5f601234567",
+      "hash": "9f2c1d4b6a8e0f3c5d7b9a1e2f4c6d8b",
+      "ext": "jpg",
+      "name": "aisle-04",
+      "thumbnailUrl": "https://storage.googleapis.com/...&signature=...",
+      "width": 1920,
+      "height": 1080,
+      "split": "train",
+      "labelCount": 6,
+      "bytes": 284213,
+      "error": null
+    }
+  ],
+  "total": 1000,
+  "hasMore": true,
+  "classes": ["person", "forklift"],
+  "errorCount": 0,
+  "nextCursor": "65f1c0a2b3d4e5f601234567"
 }
 ```
 
@@ -870,7 +870,7 @@ as the list operation.
 
 ```json
 {
-    "imageIds": ["65f1c0a2b3d4e5f601234567", "65f1c0a2b3d4e5f601234568"]
+  "imageIds": ["65f1c0a2b3d4e5f601234567", "65f1c0a2b3d4e5f601234568"]
 }
 ```
 
@@ -888,9 +888,9 @@ Copies up to 1,000 images from other datasets into this one, as the app's
 
 ```json
 {
-    "imageIds": ["65f1c0a2b3d4e5f601234567"],
-    "release": false,
-    "classMapping": { "person": 0, "vase": null }
+  "imageIds": ["65f1c0a2b3d4e5f601234567"],
+  "release": false,
+  "classMapping": { "person": 0, "vase": null }
 }
 ```
 
@@ -931,8 +931,8 @@ session that belongs to a different dataset.
 
 ```json
 {
-    "sessionId": "session_abc123",
-    "targetSplit": "train"
+  "sessionId": "session_abc123",
+  "targetSplit": "train"
 }
 ```
 
@@ -940,7 +940,7 @@ session that belongs to a different dataset.
 
 ```json
 {
-    "sourceUrl": "https://example.com/my-dataset.zip"
+  "sourceUrl": "https://example.com/my-dataset.zip"
 }
 ```
 
@@ -948,8 +948,8 @@ session that belongs to a different dataset.
 
 ```json
 {
-    "sessionId": "session_abc123",
-    "classMapping": { "person": 0, "automobile": "forklift", "background": null }
+  "sessionId": "session_abc123",
+  "classMapping": { "person": 0, "automobile": "forklift", "background": null }
 }
 ```
 
@@ -957,11 +957,11 @@ session that belongs to a different dataset.
 
 ```json
 {
-    "sessionId": "session_abc123",
-    "imageMetadata": {
-        "airbus-wing.jpg": { "aircraft": { "family": "A350" }, "inspectionStatus": "reviewed" },
-        "images/tail.jpg": { "aircraft": { "family": "A320" }, "inspectionSeverity": 2 }
-    }
+  "sessionId": "session_abc123",
+  "imageMetadata": {
+    "airbus-wing.jpg": { "aircraft": { "family": "A350" }, "inspectionStatus": "reviewed" },
+    "images/tail.jpg": { "aircraft": { "family": "A320" }, "inspectionSeverity": 2 }
+  }
 }
 ```
 
@@ -981,8 +981,8 @@ to 1,024 characters, top-level metadata keys to 128 characters, and each metadat
 
 ```json
 {
-    "jobId": "65f1c0a2b3d4e5f6012345aa",
-    "status": "queued"
+  "jobId": "65f1c0a2b3d4e5f6012345aa",
+  "status": "queued"
 }
 ```
 
@@ -1090,10 +1090,10 @@ Replaces **either** the annotations **or** the custom metadata — send one of t
 
 ```json
 {
-    "labels": [
-        { "classId": 0, "bbox": [0.5, 0.5, 0.2, 0.3] },
-        { "classId": 1, "segments": [0.1, 0.2, 0.3, 0.2, 0.2, 0.4] }
-    ]
+  "labels": [
+    { "classId": 0, "bbox": [0.5, 0.5, 0.2, 0.3] },
+    { "classId": 1, "segments": [0.1, 0.2, 0.3, 0.2, 0.2, 0.4] }
+  ]
 }
 ```
 
@@ -1101,7 +1101,7 @@ Replaces **either** the annotations **or** the custom metadata — send one of t
 
 ```json
 {
-    "metadata": { "location": "strasbourg", "reviewed": true }
+  "metadata": { "location": "strasbourg", "reviewed": true }
 }
 ```
 
@@ -1205,9 +1205,9 @@ Moves up to 1,000 images from one dataset into a different split.
 
 ```json
 {
-    "imageIds": ["65f1c0a2b3d4e5f601234567"],
-    "split": "val",
-    "conflictPolicy": "skip"
+  "imageIds": ["65f1c0a2b3d4e5f601234567"],
+  "split": "val",
+  "conflictPolicy": "skip"
 }
 ```
 
@@ -1224,7 +1224,7 @@ DELETE /api/images/bulk
 
 ```json
 {
-    "imageIds": ["65f1c0a2b3d4e5f601234567", "65f1c0a2b3d4e5f601234568"]
+  "imageIds": ["65f1c0a2b3d4e5f601234567", "65f1c0a2b3d4e5f601234568"]
 }
 ```
 
@@ -1242,7 +1242,7 @@ Returns temporary signed URLs for up to 100 image IDs from one dataset.
 
 ```json
 {
-    "imageIds": ["65f1c0a2b3d4e5f601234567"]
+  "imageIds": ["65f1c0a2b3d4e5f601234567"]
 }
 ```
 
@@ -1343,7 +1343,7 @@ Accepted fields: `name`, `description`, `visibility`, `metadata`, `tags`, `licen
 
 ```json
 {
-    "metadata": { "department": "research", "program": "inspection" }
+  "metadata": { "department": "research", "program": "inspection" }
 }
 ```
 
@@ -1463,7 +1463,7 @@ that changes the slug returns `409` while training is starting.
 
 ```json
 {
-    "metadata": { "release": "candidate-3", "reviewed": true }
+  "metadata": { "release": "candidate-3", "reviewed": true }
 }
 ```
 
@@ -1493,13 +1493,13 @@ Returns short-lived signed URLs for the model's weights, named after the model (
 
 ```json
 {
-    "files": [
-        {
-            "name": "my-model.pt",
-            "size": 6534127,
-            "downloadUrl": "https://storage.googleapis.com/...&signature=..."
-        }
-    ]
+  "files": [
+    {
+      "name": "my-model.pt",
+      "size": 6534127,
+      "downloadUrl": "https://storage.googleapis.com/...&signature=..."
+    }
+  ]
 }
 ```
 
@@ -1529,11 +1529,11 @@ Copies an accessible model into an existing project.
 
 ```json
 {
-    "owner": "acme-vision",
-    "project": "inspection",
-    "model": "v3-copy",
-    "name": "V3 Copy",
-    "description": "Cloned from a public model"
+  "owner": "acme-vision",
+  "project": "inspection",
+  "model": "v3-copy",
+  "name": "V3 Copy",
+  "description": "Cloned from a public model"
 }
 ```
 
@@ -1590,27 +1590,27 @@ versions. Internal model paths are never returned.
 
 ```json
 {
-    "images": [
+  "images": [
+    {
+      "shape": [1080, 1920],
+      "speed": { "preprocess": 2.1, "inference": 12.4, "postprocess": 1.3 },
+      "results": [
         {
-            "shape": [1080, 1920],
-            "speed": { "preprocess": 2.1, "inference": 12.4, "postprocess": 1.3 },
-            "results": [
-                {
-                    "class": 0,
-                    "name": "person",
-                    "confidence": 0.92,
-                    "box": { "x1": 100, "y1": 50, "x2": 300, "y2": 400 }
-                }
-            ]
+          "class": 0,
+          "name": "person",
+          "confidence": 0.92,
+          "box": { "x1": 100, "y1": 50, "x2": 300, "y2": 400 }
         }
-    ],
-    "metadata": {
-        "imageCount": 1,
-        "functionTimeAlive": 184.2,
-        "functionTimeCall": 0.31,
-        "task": "detect",
-        "version": { "ultralytics": "8.4.120" }
+      ]
     }
+  ],
+  "metadata": {
+    "imageCount": 1,
+    "functionTimeAlive": 184.2,
+    "functionTimeCall": 0.31,
+    "task": "detect",
+    "version": { "ultralytics": "8.4.120" }
+  }
 }
 ```
 
@@ -1719,15 +1719,15 @@ POST /api/training/start
 
 ```json
 {
-    "modelId": "65f1c0a2b3d4e5f601234599",
-    "status": "starting",
-    "gpuType": "rtx-4090",
-    "estimatedCost": { "pricePerHour": 0.69, "gpuMemoryGb": 24 },
-    "billing": {
-        "estimatedCostCents": 138,
-        "estimatedCostDisplay": "$1.38",
-        "balanceCents": 2500
-    }
+  "modelId": "65f1c0a2b3d4e5f601234599",
+  "status": "starting",
+  "gpuType": "rtx-4090",
+  "estimatedCost": { "pricePerHour": 0.69, "gpuMemoryGb": 24 },
+  "billing": {
+    "estimatedCostCents": 138,
+    "estimatedCostDisplay": "$1.38",
+    "balanceCents": 2500
+  }
 }
 ```
 
@@ -1845,8 +1845,8 @@ Cancels an active export or deletes a finished one and its file. The response re
 
 ```json
 {
-    "success": true,
-    "action": "cancelled"
+  "success": true,
+  "action": "cancelled"
 }
 ```
 
@@ -1899,11 +1899,11 @@ POST /api/deployments/{owner}
 
 ```json
 {
-    "project": "inspection",
-    "model": "v3",
-    "deployment": "edge-1",
-    "name": "Edge 1",
-    "region": "us-central1"
+  "project": "inspection",
+  "model": "v3",
+  "deployment": "edge-1",
+  "name": "Edge 1",
+  "region": "us-central1"
 }
 ```
 
@@ -2205,8 +2205,8 @@ POST /api/trash
 
 ```json
 {
-    "id": "65f1c0a2b3d4e5f601234567",
-    "type": "dataset"
+  "id": "65f1c0a2b3d4e5f601234567",
+  "type": "dataset"
 }
 ```
 
@@ -2224,8 +2224,8 @@ Delete one item:
 
 ```json
 {
-    "id": "65f1c0a2b3d4e5f601234567",
-    "type": "dataset"
+  "id": "65f1c0a2b3d4e5f601234567",
+  "type": "dataset"
 }
 ```
 
@@ -2233,7 +2233,7 @@ Or empty the whole trash:
 
 ```json
 {
-    "all": true
+  "all": true
 }
 ```
 
@@ -2263,11 +2263,11 @@ POST /api/upload/signed-url
 
 ```json
 {
-    "assetType": "datasets",
-    "assetId": "65f1c0a2b3d4e5f601234567",
-    "filename": "warehouse.zip",
-    "contentType": "application/zip",
-    "totalBytes": 52428800
+  "assetType": "datasets",
+  "assetId": "65f1c0a2b3d4e5f601234567",
+  "filename": "warehouse.zip",
+  "contentType": "application/zip",
+  "totalBytes": 52428800
 }
 ```
 
@@ -2288,10 +2288,10 @@ POST /api/upload/signed-url
 
 ```json
 {
-    "sessionId": "session_abc123",
-    "uploadUrl": "https://storage.googleapis.com/...&signature=...",
-    "expiresAt": "2026-02-22T12:00:00Z",
-    "headers": { "x-goog-if-generation-match": "0" }
+  "sessionId": "session_abc123",
+  "uploadUrl": "https://storage.googleapis.com/...&signature=...",
+  "expiresAt": "2026-02-22T12:00:00Z",
+  "headers": { "x-goog-if-generation-match": "0" }
 }
 ```
 
@@ -2309,8 +2309,8 @@ POST /api/upload/complete
 
 ```json
 {
-    "sessionId": "session_abc123",
-    "md5": "<optional md5 hex>"
+  "sessionId": "session_abc123",
+  "md5": "<optional md5 hex>"
 }
 ```
 
@@ -2466,7 +2466,7 @@ headroom. New datasets include their export `sizeBytes`; already-imported datase
 
 ```json
 {
-    "apiKey": "ROBOFLOW_API_KEY"
+  "apiKey": "ROBOFLOW_API_KEY"
 }
 ```
 
@@ -2482,16 +2482,16 @@ Queues ingest jobs for up to 500 selected Roboflow project versions, using the i
 
 ```json
 {
-    "apiKey": "ROBOFLOW_API_KEY",
-    "items": [
-        {
-            "workspace": "my-workspace",
-            "projectId": "warehouse-safety",
-            "projectName": "Warehouse Safety",
-            "projectType": "object-detection",
-            "latestVersion": 4
-        }
-    ]
+  "apiKey": "ROBOFLOW_API_KEY",
+  "items": [
+    {
+      "workspace": "my-workspace",
+      "projectId": "warehouse-safety",
+      "projectName": "Warehouse Safety",
+      "projectType": "object-detection",
+      "latestVersion": 4
+    }
+  ]
 }
 ```
 
@@ -2516,13 +2516,13 @@ Returns the plan, credit balance, and resource counts for the workspace that iss
 
 ```json
 {
-    "username": "acme-vision",
-    "name": "Acme Vision",
-    "accountType": "team",
-    "plan": "pro",
-    "creditsCents": 2500,
-    "counts": { "projects": 4, "datasets": 7, "models": 21 },
-    "teams": []
+  "username": "acme-vision",
+  "name": "Acme Vision",
+  "accountType": "team",
+  "plan": "pro",
+  "creditsCents": 2500,
+  "counts": { "projects": 4, "datasets": 7, "models": 21 },
+  "teams": []
 }
 ```
 
@@ -2561,31 +2561,31 @@ GET /api/storage
 
 ```json
 {
-    "tier": "pro",
-    "usage": {
-        "storage": { "current": 1073741824, "limit": 536870912000, "percent": 0 },
-        "datasets": { "current": 2, "limit": -1, "percent": 0 },
-        "models": { "current": 4, "limit": 500, "percent": 1 }
+  "tier": "pro",
+  "usage": {
+    "storage": { "current": 1073741824, "limit": 536870912000, "percent": 0 },
+    "datasets": { "current": 2, "limit": -1, "percent": 0 },
+    "models": { "current": 4, "limit": 500, "percent": 1 }
+  },
+  "breakdown": {
+    "byCategory": {
+      "datasets": { "bytes": 536870912, "count": 2 },
+      "models": { "bytes": 268435456, "count": 4 },
+      "exports": { "bytes": 268435456, "count": 3 }
     },
-    "breakdown": {
-        "byCategory": {
-            "datasets": { "bytes": 536870912, "count": 2 },
-            "models": { "bytes": 268435456, "count": 4 },
-            "exports": { "bytes": 268435456, "count": 3 }
-        },
-        "topItems": [
-            {
-                "_id": "65f1c0a2b3d4e5f601234567",
-                "name": "Warehouse",
-                "slug": "warehouse",
-                "sizeBytes": 536870912,
-                "type": "dataset"
-            }
-        ]
-    },
-    "region": "us",
-    "username": "acme-vision",
-    "updatedAt": "2026-01-15T10:00:00Z"
+    "topItems": [
+      {
+        "_id": "65f1c0a2b3d4e5f601234567",
+        "name": "Warehouse",
+        "slug": "warehouse",
+        "sizeBytes": 536870912,
+        "type": "dataset"
+      }
+    ]
+  },
+  "region": "us",
+  "username": "acme-vision",
+  "updatedAt": "2026-01-15T10:00:00Z"
 }
 ```
 
@@ -2618,8 +2618,8 @@ PATCH /api/users
 
 ```json
 {
-    "username": "target-user",
-    "followed": true
+  "username": "target-user",
+  "followed": true
 }
 ```
 

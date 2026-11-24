@@ -2,11 +2,11 @@
 title: ImageNette Image Classification Dataset
 comments: true
 creator:
-    name: fast.ai
-    url: https://github.com/fastai/imagenette
+  name: fast.ai
+  url: https://github.com/fastai/imagenette
 license:
-    name: Research-Only
-    url: https://www.image-net.org/download.php
+  name: Research-Only
+  url: https://www.image-net.org/download.php
 description: ImageNette is a 13,394-image subset of ImageNet with 10 easily distinguishable classes, ideal for fast image classification training, prototyping, and teaching.
 keywords: ImageNette dataset, ImageNet subset, image classification, machine learning, deep learning, YOLO, convolutional neural networks, ML dataset, education, training
 ---

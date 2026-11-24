@@ -1,8 +1,8 @@
 ---
 comments: true
 license:
-    name: CC-BY-NC-SA-3.0
-    url: https://creativecommons.org/licenses/by-nc-sa/3.0/
+  name: CC-BY-NC-SA-3.0
+  url: https://creativecommons.org/licenses/by-nc-sa/3.0/
 description: Explore the Virtual KITTI 2 depth dataset, a photorealistic synthetic recreation of KITTI driving scenes with dense per-pixel ground truth for training Ultralytics YOLO26-Depth models.
 keywords: Ultralytics, YOLO, depth estimation, Virtual KITTI 2, vKITTI2, synthetic driving dataset, dense depth, monocular depth, autonomous driving
 ---

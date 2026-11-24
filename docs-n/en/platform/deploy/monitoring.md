@@ -361,9 +361,9 @@ Pings the deployment and returns its health status with the measured round-trip 
 
 ```json
 {
-    "healthy": true,
-    "status": 200,
-    "latencyMs": 142
+  "healthy": true,
+  "status": 200,
+  "latencyMs": 142
 }
 ```
 

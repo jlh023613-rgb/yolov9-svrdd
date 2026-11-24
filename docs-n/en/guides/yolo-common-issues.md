@@ -85,9 +85,9 @@ Common training problems and their fixes are covered below.
 - Confirm that the paths to your `.yaml` files are correct.
 - Pass your dataset `.yaml` (paths, class names, splits) as the `data` argument, and a custom training-settings `.yaml` (for example `epochs` or `lr0`) as the `cfg` argument. Arguments passed directly to `model.train()` take priority over both:
 
-    ```python
-    model.train(data="/path/to/your/data.yaml", cfg="/path/to/your/cfg.yaml", batch=4)
-    ```
+  ```python
+  model.train(data="/path/to/your/data.yaml", cfg="/path/to/your/cfg.yaml", batch=4)
+  ```
 
 #### Accelerating Training with Multiple GPUs
 
@@ -100,10 +100,10 @@ Common training problems and their fixes are covered below.
 - Increase the batch size accordingly to fully utilize the multiple GPUs without exceeding memory limits.
 - Modify your training command to utilize multiple GPUs:
 
-    ```python
-    # Adjust the batch size and other settings as needed to optimize training speed
-    model.train(data="/path/to/your/data.yaml", batch=32, device=[0, 1, 2, 3])
-    ```
+  ```python
+  # Adjust the batch size and other settings as needed to optimize training speed
+  model.train(data="/path/to/your/data.yaml", batch=32, device=[0, 1, 2, 3])
+  ```
 
 #### Continuous Monitoring Parameters
 
@@ -194,13 +194,13 @@ Common problems encountered during model prediction and their fixes are covered 
 
 - Coordinate Format: YOLO26 provides bounding box coordinates in absolute pixel values. To convert these to relative coordinates (ranging from 0 to 1), you need to divide by the image dimensions. For example, let's say your image size is 640x640. Then you would do the following:
 
-    ```python
-    # Convert absolute coordinates to relative coordinates
-    x1 = x1 / 640  # Divide x-coordinates by image width
-    x2 = x2 / 640
-    y1 = y1 / 640  # Divide y-coordinates by image height
-    y2 = y2 / 640
-    ```
+  ```python
+  # Convert absolute coordinates to relative coordinates
+  x1 = x1 / 640  # Divide x-coordinates by image width
+  x2 = x2 / 640
+  y1 = y1 / 640  # Divide y-coordinates by image height
+  y2 = y2 / 640
+  ```
 
 - File Name: To obtain the file name of the image you're predicting on, read the image file path from the `path` attribute of each result object (for example `result.path`) within your prediction loop.
 

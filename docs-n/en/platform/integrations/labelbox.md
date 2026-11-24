@@ -58,29 +58,29 @@ A single data row looks like this, trimmed to the fields Platform reads:
 
 ```json
 {
-    "data_row": {
-        "external_id": "000000000307.jpg",
-        "global_key": "000000000307.jpg",
-        "row_data": "https://storage.labelbox.com/...?Expires=...&Signature=..."
-    },
-    "media_attributes": { "height": 480, "width": 640, "mime_type": "image/jpeg" },
-    "projects": {
-        "<project-id>": {
-            "labels": [
-                {
-                    "annotations": {
-                        "objects": [
-                            {
-                                "name": "Dog",
-                                "annotation_kind": "ImageBoundingBox",
-                                "bounding_box": { "top": 200.0, "left": 407.0, "height": 172.0, "width": 176.0 }
-                            }
-                        ]
-                    }
-                }
+  "data_row": {
+    "external_id": "000000000307.jpg",
+    "global_key": "000000000307.jpg",
+    "row_data": "https://storage.labelbox.com/...?Expires=...&Signature=..."
+  },
+  "media_attributes": { "height": 480, "width": 640, "mime_type": "image/jpeg" },
+  "projects": {
+    "<project-id>": {
+      "labels": [
+        {
+          "annotations": {
+            "objects": [
+              {
+                "name": "Dog",
+                "annotation_kind": "ImageBoundingBox",
+                "bounding_box": { "top": 200.0, "left": 407.0, "height": 172.0, "width": 176.0 }
+              }
             ]
+          }
         }
+      ]
     }
+  }
 }
 ```
 

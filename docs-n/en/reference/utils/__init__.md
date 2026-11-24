@@ -12,162 +12,162 @@ keywords: Ultralytics, utils, TQDM, Python, ML, Machine Learning utilities, YOLO
 
 <br>
 
-## ::: ultralytics.utils.__init__.DataExportMixin
+## ::: ultralytics.utils.**init**.DataExportMixin
 
 <br><br><hr><br>
 
-## ::: ultralytics.utils.__init__.SimpleClass
+## ::: ultralytics.utils.**init**.SimpleClass
 
 <br><br><hr><br>
 
-## ::: ultralytics.utils.__init__.IterableSimpleNamespace
+## ::: ultralytics.utils.**init**.IterableSimpleNamespace
 
 <br><br><hr><br>
 
-## ::: ultralytics.utils.__init__.ThreadingLocked
+## ::: ultralytics.utils.**init**.ThreadingLocked
 
 <br><br><hr><br>
 
-## ::: ultralytics.utils.__init__.YAML
+## ::: ultralytics.utils.**init**.YAML
 
 <br><br><hr><br>
 
-## ::: ultralytics.utils.__init__.TryExcept
+## ::: ultralytics.utils.**init**.TryExcept
 
 <br><br><hr><br>
 
-## ::: ultralytics.utils.__init__.Retry
+## ::: ultralytics.utils.**init**.Retry
 
 <br><br><hr><br>
 
-## ::: ultralytics.utils.__init__.JSONDict
+## ::: ultralytics.utils.**init**.JSONDict
 
 <br><br><hr><br>
 
-## ::: ultralytics.utils.__init__.SettingsManager
+## ::: ultralytics.utils.**init**.SettingsManager
 
 <br><br><hr><br>
 
-## ::: ultralytics.utils.__init__.env_bool
+## ::: ultralytics.utils.**init**.env_bool
 
 <br><br><hr><br>
 
-## ::: ultralytics.utils.__init__.plt_settings
+## ::: ultralytics.utils.**init**.plt_settings
 
 <br><br><hr><br>
 
-## ::: ultralytics.utils.__init__.set_logging
+## ::: ultralytics.utils.**init**.set_logging
 
 <br><br><hr><br>
 
-## ::: ultralytics.utils.__init__.emojis
+## ::: ultralytics.utils.**init**.emojis
 
 <br><br><hr><br>
 
-## ::: ultralytics.utils.__init__.read_device_model
+## ::: ultralytics.utils.**init**.read_device_model
 
 <br><br><hr><br>
 
-## ::: ultralytics.utils.__init__.is_ubuntu
+## ::: ultralytics.utils.**init**.is_ubuntu
 
 <br><br><hr><br>
 
-## ::: ultralytics.utils.__init__.is_debian
+## ::: ultralytics.utils.**init**.is_debian
 
 <br><br><hr><br>
 
-## ::: ultralytics.utils.__init__.is_colab
+## ::: ultralytics.utils.**init**.is_colab
 
 <br><br><hr><br>
 
-## ::: ultralytics.utils.__init__.is_kaggle
+## ::: ultralytics.utils.**init**.is_kaggle
 
 <br><br><hr><br>
 
-## ::: ultralytics.utils.__init__.is_jupyter
+## ::: ultralytics.utils.**init**.is_jupyter
 
 <br><br><hr><br>
 
-## ::: ultralytics.utils.__init__.is_runpod
+## ::: ultralytics.utils.**init**.is_runpod
 
 <br><br><hr><br>
 
-## ::: ultralytics.utils.__init__.is_docker
+## ::: ultralytics.utils.**init**.is_docker
 
 <br><br><hr><br>
 
-## ::: ultralytics.utils.__init__.is_raspberrypi
+## ::: ultralytics.utils.**init**.is_raspberrypi
 
 <br><br><hr><br>
 
-## ::: ultralytics.utils.__init__.is_jetson
+## ::: ultralytics.utils.**init**.is_jetson
 
 <br><br><hr><br>
 
-## ::: ultralytics.utils.__init__.is_dgx
+## ::: ultralytics.utils.**init**.is_dgx
 
 <br><br><hr><br>
 
-## ::: ultralytics.utils.__init__.is_online
+## ::: ultralytics.utils.**init**.is_online
 
 <br><br><hr><br>
 
-## ::: ultralytics.utils.__init__.is_pip_package
+## ::: ultralytics.utils.**init**.is_pip_package
 
 <br><br><hr><br>
 
-## ::: ultralytics.utils.__init__.is_dir_writeable
+## ::: ultralytics.utils.**init**.is_dir_writeable
 
 <br><br><hr><br>
 
-## ::: ultralytics.utils.__init__.is_pytest_running
+## ::: ultralytics.utils.**init**.is_pytest_running
 
 <br><br><hr><br>
 
-## ::: ultralytics.utils.__init__.is_github_action_running
+## ::: ultralytics.utils.**init**.is_github_action_running
 
 <br><br><hr><br>
 
-## ::: ultralytics.utils.__init__.get_default_args
+## ::: ultralytics.utils.**init**.get_default_args
 
 <br><br><hr><br>
 
-## ::: ultralytics.utils.__init__.get_ubuntu_version
+## ::: ultralytics.utils.**init**.get_ubuntu_version
 
 <br><br><hr><br>
 
-## ::: ultralytics.utils.__init__.get_user_config_dir
+## ::: ultralytics.utils.**init**.get_user_config_dir
 
 <br><br><hr><br>
 
-## ::: ultralytics.utils.__init__.colorstr
+## ::: ultralytics.utils.**init**.colorstr
 
 <br><br><hr><br>
 
-## ::: ultralytics.utils.__init__.remove_colorstr
+## ::: ultralytics.utils.**init**.remove_colorstr
 
 <br><br><hr><br>
 
-## ::: ultralytics.utils.__init__.threaded
+## ::: ultralytics.utils.**init**.threaded
 
 <br><br><hr><br>
 
-## ::: ultralytics.utils.__init__.set_sentry
+## ::: ultralytics.utils.**init**.set_sentry
 
 <br><br><hr><br>
 
-## ::: ultralytics.utils.__init__.deprecation_warn
+## ::: ultralytics.utils.**init**.deprecation_warn
 
 <br><br><hr><br>
 
-## ::: ultralytics.utils.__init__.clean_url
+## ::: ultralytics.utils.**init**.clean_url
 
 <br><br><hr><br>
 
-## ::: ultralytics.utils.__init__.url2file
+## ::: ultralytics.utils.**init**.url2file
 
 <br><br><hr><br>
 
-## ::: ultralytics.utils.__init__.vscode_msg
+## ::: ultralytics.utils.**init**.vscode_msg
 
 <br><br>

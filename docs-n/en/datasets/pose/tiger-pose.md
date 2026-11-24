@@ -2,11 +2,11 @@
 title: Tiger-Pose Estimation Dataset
 comments: true
 creator:
-    name: Ultralytics
-    url: https://www.ultralytics.com
+  name: Ultralytics
+  url: https://www.ultralytics.com
 license:
-    name: AGPL-3.0
-    url: https://www.ultralytics.com/license
+  name: AGPL-3.0
+  url: https://www.ultralytics.com/license
 description: "Explore the Ultralytics Tiger-Pose dataset: 263 images (210 train / 53 val) with 12 keypoints per tiger, ideal for testing pose estimation pipelines."
 keywords: Ultralytics, Tiger-Pose, dataset, pose estimation, YOLO26, training data, machine learning, neural networks
 ---
