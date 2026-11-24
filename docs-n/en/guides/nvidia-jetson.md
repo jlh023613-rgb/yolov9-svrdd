@@ -132,23 +132,23 @@ Here we will install the Ultralytics package on the Jetson. Export dependencies 
 
 1. Update packages list, install pip and upgrade to latest
 
-    ```bash
-    sudo apt update
-    sudo apt install python3-pip -y
-    pip install -U pip
-    ```
+   ```bash
+   sudo apt update
+   sudo apt install python3-pip -y
+   pip install -U pip
+   ```
 
 2. Install `ultralytics` pip package
 
-    ```bash
-    pip install ultralytics
-    ```
+   ```bash
+   pip install ultralytics
+   ```
 
 3. Reboot the device
 
-    ```bash
-    sudo reboot
-    ```
+   ```bash
+   sudo reboot
+   ```
 
 #### Install PyTorch and Torchvision
 
@@ -178,23 +178,23 @@ Here we will install the Ultralytics package on the Jetson. Export dependencies 
 
 1. Update packages list, install pip and upgrade to latest
 
-    ```bash
-    sudo apt update
-    sudo apt install python3-pip -y
-    pip install -U pip
-    ```
+   ```bash
+   sudo apt update
+   sudo apt install python3-pip -y
+   pip install -U pip
+   ```
 
 2. Install `ultralytics` pip package
 
-    ```bash
-    pip install ultralytics
-    ```
+   ```bash
+   pip install ultralytics
+   ```
 
 3. Reboot the device
 
-    ```bash
-    sudo reboot
-    ```
+   ```bash
+   sudo reboot
+   ```
 
 #### Install PyTorch and Torchvision
 
@@ -247,23 +247,23 @@ Here we will install the Ultralytics package on the Jetson. Export dependencies 
 
 1. Update packages list, install pip and upgrade to latest
 
-    ```bash
-    sudo apt update
-    sudo apt install python3-pip -y
-    pip install -U pip
-    ```
+   ```bash
+   sudo apt update
+   sudo apt install python3-pip -y
+   pip install -U pip
+   ```
 
 2. Install `ultralytics` pip package
 
-    ```bash
-    pip install ultralytics
-    ```
+   ```bash
+   pip install ultralytics
+   ```
 
 3. Reboot the device
 
-    ```bash
-    sudo reboot
-    ```
+   ```bash
+   sudo reboot
+   ```
 
 #### Install PyTorch and Torchvision
 
@@ -271,16 +271,16 @@ The above ultralytics installation will install Torch and Torchvision. However, 
 
 1. Uninstall currently installed PyTorch and Torchvision
 
-    ```bash
-    pip uninstall torch torchvision
-    ```
+   ```bash
+   pip uninstall torch torchvision
+   ```
 
 2. Install `torch 2.1.0` and `torchvision 0.16.2` according to JP5.1.2
 
-    ```bash
-    pip install https://github.com/ultralytics/assets/releases/download/v0.0.0/torch-2.1.0a0+41361538.nv23.06-cp38-cp38-linux_aarch64.whl
-    pip install https://github.com/ultralytics/assets/releases/download/v0.0.0/torchvision-0.16.2+c6f3977-cp38-cp38-linux_aarch64.whl
-    ```
+   ```bash
+   pip install https://github.com/ultralytics/assets/releases/download/v0.0.0/torch-2.1.0a0+41361538.nv23.06-cp38-cp38-linux_aarch64.whl
+   pip install https://github.com/ultralytics/assets/releases/download/v0.0.0/torchvision-0.16.2+c6f3977-cp38-cp38-linux_aarch64.whl
+   ```
 
 !!! note
 
@@ -854,30 +854,30 @@ When using NVIDIA Jetson, there are a couple of best practices to follow in orde
 
 1. Enable MAX Power Mode
 
-    Enabling MAX Power Mode on the Jetson will make sure all CPU, GPU cores are turned on.
+   Enabling MAX Power Mode on the Jetson will make sure all CPU, GPU cores are turned on.
 
-    ```bash
-    sudo nvpmodel -m 0
-    ```
+   ```bash
+   sudo nvpmodel -m 0
+   ```
 
 2. Enable Jetson Clocks
 
-    Enabling Jetson Clocks will make sure all CPU, GPU cores are clocked at their maximum frequency.
+   Enabling Jetson Clocks will make sure all CPU, GPU cores are clocked at their maximum frequency.
 
-    ```bash
-    sudo jetson_clocks
-    ```
+   ```bash
+   sudo jetson_clocks
+   ```
 
 3. Install Jetson Stats Application
 
-    We can use jetson stats application to monitor the temperatures of the system components and check other system details such as view CPU, GPU, RAM utilization, change power modes, set to max clocks, check JetPack information
+   We can use jetson stats application to monitor the temperatures of the system components and check other system details such as view CPU, GPU, RAM utilization, change power modes, set to max clocks, check JetPack information
 
-    ```bash
-    sudo apt update
-    sudo pip install jetson-stats
-    sudo reboot
-    jtop
-    ```
+   ```bash
+   sudo apt update
+   sudo pip install jetson-stats
+   sudo reboot
+   jtop
+   ```
 
 <img width="1024" src="https://cdn.ul.run/i/b7606d1afc83731483747c3def51ce0c.avif" alt="Jetson Stats">
 

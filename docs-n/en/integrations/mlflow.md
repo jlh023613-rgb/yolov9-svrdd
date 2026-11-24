@@ -68,39 +68,39 @@ Make sure that MLflow logging is enabled in Ultralytics settings. Usually, this 
 
 1. **Set a Project Name**: You can set the project name via an environment variable:
 
-    ```bash
-    export MLFLOW_EXPERIMENT_NAME=YOUR_EXPERIMENT_NAME
-    ```
+   ```bash
+   export MLFLOW_EXPERIMENT_NAME=YOUR_EXPERIMENT_NAME
+   ```
 
-    Or use the `project=<project>` argument when training a YOLO model, i.e. `yolo train project=my_project`.
+   Or use the `project=<project>` argument when training a YOLO model, i.e. `yolo train project=my_project`.
 
 2. **Set a Run Name**: Similar to setting a project name, you can set the run name via an environment variable:
 
-    ```bash
-    export MLFLOW_RUN=YOUR_RUN_NAME
-    ```
+   ```bash
+   export MLFLOW_RUN=YOUR_RUN_NAME
+   ```
 
-    Or use the `name=<name>` argument when training a YOLO model, i.e. `yolo train project=my_project name=my_name`.
+   Or use the `name=<name>` argument when training a YOLO model, i.e. `yolo train project=my_project name=my_name`.
 
 3. **Start Local MLflow Server**: Without `MLFLOW_TRACKING_URI`, runs are logged to MLflow's default local store in the directory where you train (`mlflow.db` on MLflow 3.7 and later unless the directory already holds an `mlruns/` history, `mlruns/` on earlier versions). To view them, run this from the same directory:
 
-    ```bash
-    mlflow ui
-    ```
+   ```bash
+   mlflow ui
+   ```
 
-    This will start a local server at `http://127.0.0.1:5000` by default. To point your training runs at a different tracking server, export `MLFLOW_TRACKING_URI` before training:
+   This will start a local server at `http://127.0.0.1:5000` by default. To point your training runs at a different tracking server, export `MLFLOW_TRACKING_URI` before training:
 
-    ```bash
-    export MLFLOW_TRACKING_URI=http://127.0.0.1:5000
-    ```
+   ```bash
+   export MLFLOW_TRACKING_URI=http://127.0.0.1:5000
+   ```
 
 4. **Keep the MLflow Run Active After Training**: By default, Ultralytics ends the MLflow run automatically when training finishes, with status `FAILED` if training raised an error before the run was closed. To keep the run open (for example, to log additional metrics or artifacts from the same notebook), set `MLFLOW_KEEP_RUN_ACTIVE` to `True` before training:
 
-    ```bash
-    export MLFLOW_KEEP_RUN_ACTIVE=True
-    ```
+   ```bash
+   export MLFLOW_KEEP_RUN_ACTIVE=True
+   ```
 
-    The values `1`, `true`, `yes`, `on`, `y`, and `t` enable this behavior (case-insensitive). Any other value, including an unset variable, keeps the default of closing the run. Remember to close it manually afterwards with `mlflow.end_run()`.
+   The values `1`, `true`, `yes`, `on`, `y`, and `t` enable this behavior (case-insensitive). Any other value, including an unset variable, keeps the default of closing the run. Remember to close it manually afterwards with `mlflow.end_run()`.
 
 ### Logging
 

@@ -201,10 +201,10 @@ Then launch the training with the Python API:
 - **Purpose**: Enables models to handle objects at different distances and sizes. For example, in autonomous driving applications, vehicles can appear at various distances from the camera, requiring the model to recognize them regardless of their size.
 - **Ultralytics' implementation**: [RandomPerspective](../reference/data/augment.md#ultralytics.data.augment.RandomPerspective)
 - **Note**:
-    - The value `-1.0` is not shown as it would make the image disappear, while `1.0` simply results in a 2x zoom.
-    - The values displayed in the table below are the realized scale deltas, not the values you pass to the `scale` hyperparameter.
-    - The float form is validated to the `0.0` - `1.0` range, and a value outside it raises a `ValueError`. To sample a factor beyond a 2x zoom, pass the `(min, max)` tuple form instead.
-    - The tuple form applies to the geometric tasks only. Classification training derives its own crop range from the float (`1.0 - scale` to `1.0`), so passing a tuple there raises a `TypeError`.
+  - The value `-1.0` is not shown as it would make the image disappear, while `1.0` simply results in a 2x zoom.
+  - The values displayed in the table below are the realized scale deltas, not the values you pass to the `scale` hyperparameter.
+  - The float form is validated to the `0.0` - `1.0` range, and a value outside it raises a `ValueError`. To sample a factor beyond a 2x zoom, pass the `(min, max)` tuple form instead.
+  - The tuple form applies to the geometric tasks only. Classification training derives its own crop range from the float (`1.0 - scale` to `1.0`), so passing a tuple there raises a `TypeError`.
 
 |                                                   **`-0.5`**                                                   |                                                   **`-0.25`**                                                   |                                                     **`0.0`**                                                     |                                                   **`0.25`**                                                   |                                                   **`0.5`**                                                   |
 | :------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
@@ -218,8 +218,8 @@ Then launch the training with the Python API:
 - **Purpose**: Helps models generalize to variations in viewing angles caused by slight tilts or oblique viewpoints. For instance, in traffic monitoring, objects like cars and road signs may appear slanted due to non-perpendicular camera placements. Applying shear augmentation ensures the model learns to recognize objects despite such skewed distortions.
 - **Ultralytics' implementation**: [RandomPerspective](../reference/data/augment.md#ultralytics.data.augment.RandomPerspective)
 - **Note**:
-    - `shear` values can rapidly distort the image, so it's recommended to start with small values and gradually increase them.
-    - Unlike perspective transformations, shear does not introduce depth or vanishing points but instead distorts the shape of objects by changing their angles while keeping opposite sides parallel.
+  - `shear` values can rapidly distort the image, so it's recommended to start with small values and gradually increase them.
+  - Unlike perspective transformations, shear does not introduce depth or vanishing points but instead distorts the shape of objects by changing their angles while keeping opposite sides parallel.
 
 |                                                  **`-10`**                                                   |                                                  **`-5`**                                                   |                                                     **`0.0`**                                                     |                                                  **`5`**                                                   |                                                  **`10`**                                                   |
 | :----------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------: |
@@ -281,11 +281,11 @@ Then launch the training with the Python API:
 - **Purpose**: Highly effective for improving small object detection and context understanding. For example, in wildlife conservation projects where animals may appear at various distances and scales, mosaic augmentation helps the model learn to recognize the same species across different sizes, partial occlusions, and environmental contexts by artificially creating diverse training samples from limited data.
 - **Ultralytics' implementation**: [Mosaic](../reference/data/augment.md#ultralytics.data.augment.Mosaic)
 - **Note**:
-    - Even if the `mosaic` augmentation makes the model more robust, it can also make the training process more challenging.
-    - The `mosaic` augmentation can be disabled near the end of training by setting `close_mosaic` to the number of epochs before completion when it should be turned off. For example, if `epochs` is set to `200` and `close_mosaic` is set to `20`, the `mosaic` augmentation will be disabled after `180` epochs. If `close_mosaic` is set to `0`, the `mosaic` augmentation will be enabled for the entire training process.
-    - Closing the mosaic also disables `copy_paste`, `mixup`, and `cutmix` at the same epoch. The four are switched off together, so the final epochs train without them while every other augmentation — the geometric transforms, HSV, flips, and Albumentations — keeps running. Note that `copy_paste` in its default `flip` mode works within a single image rather than combining several.
-    - The center of the generated mosaic is determined using random values, and can either be inside the image or outside of it.
-    - The current implementation of the `mosaic` augmentation combines the current image with 3 others, drawn from a buffer of recently loaded images, or from anywhere in the dataset when `cache='ram'`. Either way they are sampled with replacement, so the same image can appear more than once in a single mosaic.
+  - Even if the `mosaic` augmentation makes the model more robust, it can also make the training process more challenging.
+  - The `mosaic` augmentation can be disabled near the end of training by setting `close_mosaic` to the number of epochs before completion when it should be turned off. For example, if `epochs` is set to `200` and `close_mosaic` is set to `20`, the `mosaic` augmentation will be disabled after `180` epochs. If `close_mosaic` is set to `0`, the `mosaic` augmentation will be enabled for the entire training process.
+  - Closing the mosaic also disables `copy_paste`, `mixup`, and `cutmix` at the same epoch. The four are switched off together, so the final epochs train without them while every other augmentation — the geometric transforms, HSV, flips, and Albumentations — keeps running. Note that `copy_paste` in its default `flip` mode works within a single image rather than combining several.
+  - The center of the generated mosaic is determined using random values, and can either be inside the image or outside of it.
+  - The current implementation of the `mosaic` augmentation combines the current image with 3 others, drawn from a buffer of recently loaded images, or from anywhere in the dataset when `cache='ram'`. Either way they are sampled with replacement, so the same image can appear more than once in a single mosaic.
 
 |                                                 **`mosaic` off**                                                  |                                                  **`mosaic` on**                                                  |
 | :---------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------: |
@@ -299,7 +299,7 @@ Then launch the training with the Python API:
 - **Purpose**: Improves model robustness and reduces overfitting. For example, in retail product recognition systems, mixup helps the model learn more robust features by blending images of different products, teaching it to identify items even when they're partially visible or obscured by other products on crowded store shelves.
 - **Ultralytics' implementation**: [MixUp](../reference/data/augment.md#ultralytics.data.augment.MixUp)
 - **Note**:
-    - The `mixup` ratio is a random value picked from a `np.random.beta(32.0, 32.0)` beta distribution, meaning each image contributes approximately 50%, with slight variations.
+  - The `mixup` ratio is a random value picked from a `np.random.beta(32.0, 32.0)` beta distribution, meaning each image contributes approximately 50%, with slight variations.
 
 |                                         **First image, `mixup` off**                                         |                                         **Second image, `mixup` off**                                         |                                                  **`mixup` on**                                                   |
 | :----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------: |
@@ -313,10 +313,10 @@ Then launch the training with the Python API:
 - **Purpose**: Enhances model performance by creating realistic occlusion scenarios while maintaining local feature integrity. For example, in autonomous driving systems, cutmix helps the model learn to recognize vehicles or pedestrians even when they're partially occluded by other objects, improving detection accuracy in complex real-world environments with overlapping objects.
 - **Ultralytics' implementation**: [CutMix](../reference/data/augment.md#ultralytics.data.augment.CutMix)
 - **Note**:
-    - The size and position of the cut region is determined randomly for each application.
-    - Unlike mixup which blends pixel values globally, `cutmix` maintains the original pixel intensities within the cut regions, preserving local features.
-    - A region is pasted into the target image only if it does not overlap with any existing bounding box. Additionally, only the bounding boxes that retain enough of their original area within the pasted region are preserved.
-    - This minimum bounding box area threshold cannot be changed with the current implementation. It is `0.1` (10%) for detection labels and `0.01` (1%) once the labels carry segments.
+  - The size and position of the cut region is determined randomly for each application.
+  - Unlike mixup which blends pixel values globally, `cutmix` maintains the original pixel intensities within the cut regions, preserving local features.
+  - A region is pasted into the target image only if it does not overlap with any existing bounding box. Additionally, only the bounding boxes that retain enough of their original area within the pasted region are preserved.
+  - This minimum bounding box area threshold cannot be changed with the current implementation. It is `0.1` (10%) for detection labels and `0.01` (1%) once the labels carry segments.
 
 |                                    **First image, `cutmix` off**                                     |                                    **Second image, `cutmix` off**                                     |                                              **`cutmix` on**                                              |
 | :--------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------: |
@@ -332,9 +332,9 @@ Then launch the training with the Python API:
 - **Purpose**: Particularly useful for instance segmentation tasks and rare object classes. For example, in industrial defect detection where certain types of defects appear infrequently, copy-paste augmentation can artificially increase the occurrence of these rare defects by copying them from one image to another, helping the model better learn these underrepresented cases without requiring additional defective samples.
 - **Ultralytics' implementation**: [CopyPaste](../reference/data/augment.md#ultralytics.data.augment.CopyPaste)
 - **Note**:
-    - As shown in the video below, the `copy_paste` augmentation can be used to copy objects from one image to another.
-    - Once an object is selected for copying, its IoA is computed against all objects already present in the target image, regardless of `copy_paste_mode`. The object is pasted only if all IoA values are below `0.3` (30%); it is not pasted if any IoA value is `0.3` or higher.
-    - The IoA threshold cannot be changed with the current implementation and is set to `0.3` by default.
+  - As shown in the video below, the `copy_paste` augmentation can be used to copy objects from one image to another.
+  - Once an object is selected for copying, its IoA is computed against all objects already present in the target image, regardless of `copy_paste_mode`. The object is pasted only if all IoA values are below `0.3` (30%); it is not pasted if any IoA value is `0.3` or higher.
+  - The IoA threshold cannot be changed with the current implementation and is set to `0.3` by default.
 
 |                                               **`copy_paste` off**                                                |                                **`copy_paste` on with `copy_paste_mode=flip`**                                |                                                               **Visualize the `copy_paste` process**                                                               |
 | :---------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------: |
@@ -348,9 +348,9 @@ Then launch the training with the Python API:
 - **Purpose**: Allows flexibility in how copied objects are integrated into target images.
 - **Ultralytics' implementation**: [CopyPaste](../reference/data/augment.md#ultralytics.data.augment.CopyPaste)
 - **Note**:
-    - The IoA principle is the same for both `copy_paste_mode` options, but the way the objects are copied is different.
-    - Depending on the image size, objects may sometimes be copied partially or entirely outside the frame.
-    - Depending on the quality of polygon annotations, copied objects may have slight shape variations compared to the originals.
+  - The IoA principle is the same for both `copy_paste_mode` options, but the way the objects are copied is different.
+  - Depending on the image size, objects may sometimes be copied partially or entirely outside the frame.
+  - Depending on the quality of polygon annotations, copied objects may have slight shape variations compared to the originals.
 
 |                                              **Reference image**                                              |                                         **Chosen image for `copy_paste`**                                         |                             **`copy_paste` on with `copy_paste_mode=mixup`**                             |
 | :-----------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------: |
@@ -364,13 +364,13 @@ Then launch the training with the Python API:
 - **Default**: `'{{ auto_augment }}'`
 - **Usage**: Applies automated augmentation policies for classification. The `'randaugment'` option uses RandAugment, `'autoaugment'` uses AutoAugment, and `'augmix'` uses AugMix. Setting to `None` disables automated augmentation.
 - **Purpose**: Optimizes augmentation strategies automatically for classification tasks. The differences are the following:
-    - **AutoAugment**: This mode applies predefined augmentation policies learned from datasets like ImageNet, CIFAR10, and SVHN. Users can select these existing policies but cannot train new ones within Torchvision. To discover optimal augmentation strategies for specific datasets, external libraries or custom implementations would be necessary. Reference to the [AutoAugment paper](https://arxiv.org/abs/1805.09501).
-    - **RandAugment**: Applies a random selection of transformations with uniform magnitude. This approach reduces the need for an extensive search phase, making it more computationally efficient while still enhancing model robustness. Reference to the [RandAugment paper](https://arxiv.org/abs/1909.13719).
-    - **AugMix**: AugMix is a data augmentation method that enhances model robustness by creating diverse image variations through random combinations of simple transformations. Reference to the [AugMix paper](https://arxiv.org/abs/1912.02781).
+  - **AutoAugment**: This mode applies predefined augmentation policies learned from datasets like ImageNet, CIFAR10, and SVHN. Users can select these existing policies but cannot train new ones within Torchvision. To discover optimal augmentation strategies for specific datasets, external libraries or custom implementations would be necessary. Reference to the [AutoAugment paper](https://arxiv.org/abs/1805.09501).
+  - **RandAugment**: Applies a random selection of transformations with uniform magnitude. This approach reduces the need for an extensive search phase, making it more computationally efficient while still enhancing model robustness. Reference to the [RandAugment paper](https://arxiv.org/abs/1909.13719).
+  - **AugMix**: AugMix is a data augmentation method that enhances model robustness by creating diverse image variations through random combinations of simple transformations. Reference to the [AugMix paper](https://arxiv.org/abs/1912.02781).
 - **Ultralytics' implementation**: [classify_augmentations()](../reference/data/augment.md#ultralytics.data.augment.classify_augmentations)
 - **Note**:
-    - Essentially, the main difference between the three methods is the way the augmentation policies are defined and applied.
-    - You can refer to [this article](https://sebastianraschka.com/blog/2023/data-augmentation-pytorch.html) that compares the three methods in detail.
+  - Essentially, the main difference between the three methods is the way the augmentation policies are defined and applied.
+  - You can refer to [this article](https://sebastianraschka.com/blog/2023/data-augmentation-pytorch.html) that compares the three methods in detail.
 
 ### Random Erasing (`erasing`)
 
@@ -380,7 +380,7 @@ Then launch the training with the Python API:
 - **Purpose**: Helps models learn robust features and prevents over-reliance on specific image regions. For example, in facial recognition systems, random erasing helps models become more robust to partial occlusions like sunglasses, face masks, or other objects that might partially cover facial features. This improves real-world performance by forcing the model to identify individuals using multiple facial characteristics rather than depending solely on distinctive features that might be obscured.
 - **Ultralytics' implementation**: [classify_augmentations()](../reference/data/augment.md#ultralytics.data.augment.classify_augmentations)
 - **Note**:
-    - The `erasing` augmentation comes with a `scale`, `ratio`, and `value` hyperparameters that cannot be changed with the [current implementation](https://github.com/ultralytics/ultralytics/blob/main/ultralytics/data/augment.py). Their default values are `(0.02, 0.33)`, `(0.3, 3.3)`, and `0`, respectively, as stated in the PyTorch [documentation](https://docs.pytorch.org/vision/main/generated/torchvision.transforms.RandomErasing.html).
+  - The `erasing` augmentation comes with a `scale`, `ratio`, and `value` hyperparameters that cannot be changed with the [current implementation](https://github.com/ultralytics/ultralytics/blob/main/ultralytics/data/augment.py). Their default values are `(0.02, 0.33)`, `(0.3, 3.3)`, and `0`, respectively, as stated in the PyTorch [documentation](https://docs.pytorch.org/vision/main/generated/torchvision.transforms.RandomErasing.html).
 
 |                                                 **`erasing` off**                                                 |                                      **`erasing` on (example 1)**                                      |                                      **`erasing` on (example 2)**                                      |                                      **`erasing` on (example 3)**                                      |
 | :---------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------: |
@@ -396,11 +396,11 @@ Then launch the training with the Python API:
 - **Purpose**: Provides fine-grained control over data augmentation strategies by leveraging the extensive library of Albumentations transforms. This is particularly useful when you need specialized augmentations beyond the built-in YOLO options, such as elastic deformations and grid distortions for medical imaging, transforms tuned for overhead aerial and satellite perspectives, noise and brightness shifts that simulate low-light conditions, or defect-like texture variations for industrial inspection.
 - **Ultralytics' implementation**: [Albumentations](../reference/data/augment.md#ultralytics.data.augment.Albumentations)
 - **Note**:
-    - Building the transform objects requires the Python API. Ultralytics serializes them with `A.to_dict()` when saving a checkpoint, so an already-serialized list round-trips through a YAML configuration file or the CLI, which is what lets `resume` restore them.
-    - Custom transforms completely replace the default Albumentations set. Every augmentation configured elsewhere on this page — `mosaic`, `hsv_h`, `degrees`, and the rest — stays active and is applied independently.
-    - Spatial transforms that change image geometry, including ones nested in `A.OneOf` or `A.Compose`, move bounding boxes, polygons, keypoints, and depth or semantic masks together with the image; `A.RandomGridShuffle` cannot preserve polygon or keypoint topology and raises on segmentation, pose, and OBB samples.
-    - Albumentations offers 70+ transforms; the [Albumentations documentation](https://albumentations.ai/docs/) lists them all. Adding many transforms, or computationally expensive ones, slows training down, so start with a small set and watch the epoch time.
-    - Applies to the `detect`, `segment`, `semantic`, `depth`, `pose`, and `obb` tasks. Classification is excluded, as it uses a separate augmentation pipeline.
+  - Building the transform objects requires the Python API. Ultralytics serializes them with `A.to_dict()` when saving a checkpoint, so an already-serialized list round-trips through a YAML configuration file or the CLI, which is what lets `resume` restore them.
+  - Custom transforms completely replace the default Albumentations set. Every augmentation configured elsewhere on this page — `mosaic`, `hsv_h`, `degrees`, and the rest — stays active and is applied independently.
+  - Spatial transforms that change image geometry, including ones nested in `A.OneOf` or `A.Compose`, move bounding boxes, polygons, keypoints, and depth or semantic masks together with the image; `A.RandomGridShuffle` cannot preserve polygon or keypoint topology and raises on segmentation, pose, and OBB samples.
+  - Albumentations offers 70+ transforms; the [Albumentations documentation](https://albumentations.ai/docs/) lists them all. Adding many transforms, or computationally expensive ones, slows training down, so start with a small set and watch the epoch time.
+  - Applies to the `detect`, `segment`, `semantic`, `depth`, `pose`, and `obb` tasks. Classification is excluded, as it uses a separate augmentation pipeline.
 
 The examples below need Albumentations 1.4.22 or newer, and therefore Python 3.9 or newer.
 

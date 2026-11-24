@@ -16,9 +16,9 @@ import numpy as np
 import pytest
 import torch
 from PIL import Image
+from tests import CFG, MODEL, MODELS, SOURCE, SOURCES_LIST, TASK_MODEL_DATA
 
 import ultralytics.data.build as data_build
-from tests import CFG, MODEL, MODELS, SOURCE, SOURCES_LIST, TASK_MODEL_DATA
 from ultralytics import RTDETR, YOLO
 from ultralytics.cfg import get_cfg
 from ultralytics.data.build import build_dataloader, load_inference_source

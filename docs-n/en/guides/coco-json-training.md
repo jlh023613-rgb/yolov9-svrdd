@@ -182,9 +182,9 @@ train_json: /path/to/my_dataset/annotations/instances_train.json
 val_json: /path/to/my_dataset/annotations/instances_val.json
 
 names:
-    0: person
-    1: bicycle
-    # ... remaining class names
+  0: person
+  1: bicycle
+  # ... remaining class names
 ```
 
 Expected directory structure:

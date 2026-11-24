@@ -74,21 +74,21 @@ Each JSON file follows the [COCO data format](https://cocodataset.org/#format-da
 
 ```json
 {
-    "images": [{ "id": 1, "file_name": "img_001.jpg", "width": 640, "height": 480 }],
-    "annotations": [
-        {
-            "id": 1,
-            "image_id": 1,
-            "category_id": 1,
-            "bbox": [100, 50, 200, 150],
-            "area": 30000,
-            "iscrowd": 0
-        }
-    ],
-    "categories": [
-        { "id": 1, "name": "helmet" },
-        { "id": 2, "name": "vest" }
-    ]
+  "images": [{ "id": 1, "file_name": "img_001.jpg", "width": 640, "height": 480 }],
+  "annotations": [
+    {
+      "id": 1,
+      "image_id": 1,
+      "category_id": 1,
+      "bbox": [100, 50, 200, 150],
+      "area": 30000,
+      "iscrowd": 0
+    }
+  ],
+  "categories": [
+    { "id": 1, "name": "helmet" },
+    { "id": 2, "name": "vest" }
+  ]
 }
 ```
 
@@ -233,8 +233,8 @@ path: /absolute/path/to/my_dataset
 train: images/train
 val: images/val
 names:
-    0: helmet
-    1: vest
+  0: helmet
+  1: vest
 ```
 
 For more details on the dataset YAML format, see the [dataset configuration guide](../datasets/detect/index.md).

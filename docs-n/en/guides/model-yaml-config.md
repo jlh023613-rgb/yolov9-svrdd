@@ -22,11 +22,11 @@ The **parameters** section specifies the model's global characteristics and scal
 # Parameters
 nc: 80 # number of classes
 scales: # compound scaling constants [depth, width, max_channels]
-    n: [0.50, 0.25, 1024] # nano: shallow layers, narrow channels
-    s: [0.50, 0.50, 1024] # small: shallow depth, standard width
-    m: [0.50, 1.00, 512] # medium: moderate depth, full width
-    l: [1.00, 1.00, 512] # large: full depth and width
-    x: [1.00, 1.50, 512] # extra-large: maximum performance
+  n: [0.50, 0.25, 1024] # nano: shallow layers, narrow channels
+  s: [0.50, 0.50, 1024] # small: shallow depth, standard width
+  m: [0.50, 1.00, 512] # medium: moderate depth, full width
+  l: [1.00, 1.00, 512] # large: full depth and width
+  x: [1.00, 1.50, 512] # extra-large: maximum performance
 kpt_shape: [17, 3] # pose models only
 ```
 
@@ -50,16 +50,16 @@ The model architecture consists of backbone (feature extraction) and head (task-
 nc: 80
 
 backbone:
-    # [from, repeats, module, args]
-    - [-1, 1, Conv, [64, 3, 2]] # 0: Initial convolution
-    - [-1, 1, Conv, [128, 3, 2]] # 1: Downsample
-    - [-1, 3, C2f, [128, True]] # 2: Feature processing
+  # [from, repeats, module, args]
+  - [-1, 1, Conv, [64, 3, 2]] # 0: Initial convolution
+  - [-1, 1, Conv, [128, 3, 2]] # 1: Downsample
+  - [-1, 3, C2f, [128, True]] # 2: Feature processing
 
 head:
-    - [-1, 1, nn.Upsample, [None, 2, nearest]] # 3: Upsample
-    - [[-1, 0], 1, Concat, [1]] # 4: Spatially compatible skip connection
-    - [-1, 3, C2f, [256]] # 5: Process features
-    - [[5], 1, Detect, [nc]] # 6: Detection layer
+  - [-1, 1, nn.Upsample, [None, 2, nearest]] # 3: Upsample
+  - [[-1, 0], 1, Concat, [1]] # 4: Spatially compatible skip connection
+  - [-1, 3, C2f, [256]] # 5: Process features
+  - [[5], 1, Detect, [nc]] # 6: Detection layer
 ```
 
 Layer indices continue across the backbone and head, and concatenated feature maps must have matching spatial dimensions.
@@ -192,12 +192,12 @@ When using models that output multiple feature maps, the Index module selects sp
 nc: 80
 
 backbone:
-    - [-1, 1, TorchVision, [768, convnext_tiny, DEFAULT, True, 2, True]] # Multi-output
+  - [-1, 1, TorchVision, [768, convnext_tiny, DEFAULT, True, 2, True]] # Multi-output
 head:
-    - [0, 1, Index, [192, 4]] # Select 4th feature map (192 channels)
-    - [0, 1, Index, [384, 6]] # Select 6th feature map (384 channels)
-    - [0, 1, Index, [768, 8]] # Select 8th feature map (768 channels)
-    - [[1, 2, 3], 1, Detect, [nc]] # Multi-scale detection
+  - [0, 1, Index, [192, 4]] # Select 4th feature map (192 channels)
+  - [0, 1, Index, [384, 6]] # Select 6th feature map (384 channels)
+  - [0, 1, Index, [768, 8]] # Select 8th feature map (768 channels)
+  - [[1, 2, 3], 1, Detect, [nc]] # Multi-scale detection
 ```
 
 ## Module Resolution System
@@ -249,62 +249,62 @@ Modifying the source code is the most versatile way to integrate your custom mod
 
 2. **Define your module** in [`ultralytics/nn/modules/block.py`](https://github.com/ultralytics/ultralytics/blob/main/ultralytics/nn/modules/block.py):
 
-    ```python
-    class CustomBlock(nn.Module):
-        """Custom block with Conv-BatchNorm-ReLU sequence."""
+   ```python
+   class CustomBlock(nn.Module):
+       """Custom block with Conv-BatchNorm-ReLU sequence."""
 
-        def __init__(self, c1, c2):
-            """Initialize CustomBlock with input and output channels."""
-            super().__init__()
-            self.layers = nn.Sequential(nn.Conv2d(c1, c2, 3, 1, 1), nn.BatchNorm2d(c2), nn.ReLU())
+       def __init__(self, c1, c2):
+           """Initialize CustomBlock with input and output channels."""
+           super().__init__()
+           self.layers = nn.Sequential(nn.Conv2d(c1, c2, 3, 1, 1), nn.BatchNorm2d(c2), nn.ReLU())
 
-        def forward(self, x):
-            """Forward pass through the block."""
-            return self.layers(x)
-    ```
+       def forward(self, x):
+           """Forward pass through the block."""
+           return self.layers(x)
+   ```
 
 3. **Expose your module at the package level** in [`ultralytics/nn/modules/__init__.py`](https://github.com/ultralytics/ultralytics/blob/main/ultralytics/nn/modules/__init__.py):
 
-    ```python
-    from .block import CustomBlock  # noqa makes CustomBlock available as ultralytics.nn.modules.CustomBlock
-    ```
+   ```python
+   from .block import CustomBlock  # noqa makes CustomBlock available as ultralytics.nn.modules.CustomBlock
+   ```
 
 4. **Add to imports** in [`ultralytics/nn/tasks.py`](https://github.com/ultralytics/ultralytics/blob/main/ultralytics/nn/tasks.py):
 
-    ```python
-    from ultralytics.nn.modules import CustomBlock  # noqa
-    ```
+   ```python
+   from ultralytics.nn.modules import CustomBlock  # noqa
+   ```
 
 5. **Add the module to `base_modules`** inside [`parse_model()`](https://github.com/ultralytics/ultralytics/blob/main/ultralytics/nn/tasks.py). Modules in this set automatically receive input and output channels:
 
-    ```python
-    base_modules = frozenset(
-        {
-            # Existing modules...
-            CustomBlock,
-        }
-    )
-    ```
+   ```python
+   base_modules = frozenset(
+       {
+           # Existing modules...
+           CustomBlock,
+       }
+   )
+   ```
 
 6. **Use the module** in your model YAML:
 
-    ```yaml
-    # custom_model.yaml
-    nc: 1
-    backbone:
-        - [-1, 1, CustomBlock, [64]]
-    head:
-        - [-1, 1, Classify, [nc]]
-    ```
+   ```yaml
+   # custom_model.yaml
+   nc: 1
+   backbone:
+     - [-1, 1, CustomBlock, [64]]
+   head:
+     - [-1, 1, Classify, [nc]]
+   ```
 
 7. **Check FLOPs** to ensure the forward pass works:
 
-    ```python
-    from ultralytics import YOLO
+   ```python
+   from ultralytics import YOLO
 
-    model = YOLO("custom_model.yaml", task="classify")
-    model.info()  # should print non-zero FLOPs if working
-    ```
+   model = YOLO("custom_model.yaml", task="classify")
+   model.info()  # should print non-zero FLOPs if working
+   ```
 
 ## Example Configurations
 
@@ -314,19 +314,19 @@ Modifying the source code is the most versatile way to integrate your custom mod
 # Simple YOLO detection model
 nc: 80
 scales:
-    n: [0.33, 0.25, 1024]
+  n: [0.33, 0.25, 1024]
 
 backbone:
-    - [-1, 1, Conv, [64, 3, 2]] # 0-P1/2
-    - [-1, 1, Conv, [128, 3, 2]] # 1-P2/4
-    - [-1, 3, C2f, [128, True]] # 2
-    - [-1, 1, Conv, [256, 3, 2]] # 3-P3/8
-    - [-1, 6, C2f, [256, True]] # 4
-    - [-1, 1, SPPF, [256, 5]] # 5
+  - [-1, 1, Conv, [64, 3, 2]] # 0-P1/2
+  - [-1, 1, Conv, [128, 3, 2]] # 1-P2/4
+  - [-1, 3, C2f, [128, True]] # 2
+  - [-1, 1, Conv, [256, 3, 2]] # 3-P3/8
+  - [-1, 6, C2f, [256, True]] # 4
+  - [-1, 1, SPPF, [256, 5]] # 5
 
 head:
-    - [-1, 1, Conv, [256, 3, 1]] # 6
-    - [[6], 1, Detect, [nc]] # 7
+  - [-1, 1, Conv, [256, 3, 1]] # 6
+  - [[6], 1, Detect, [nc]] # 7
 ```
 
 ### TorchVision Backbone Model
@@ -336,13 +336,13 @@ head:
 nc: 80
 
 backbone:
-    - [-1, 1, TorchVision, [768, convnext_tiny, DEFAULT, True, 2, True]]
+  - [-1, 1, TorchVision, [768, convnext_tiny, DEFAULT, True, 2, True]]
 
 head:
-    - [0, 1, Index, [192, 4]] # P3 features
-    - [0, 1, Index, [384, 6]] # P4 features
-    - [0, 1, Index, [768, 8]] # P5 features
-    - [[1, 2, 3], 1, Detect, [nc]] # Multi-scale detection
+  - [0, 1, Index, [192, 4]] # P3 features
+  - [0, 1, Index, [384, 6]] # P4 features
+  - [0, 1, Index, [768, 8]] # P5 features
+  - [[1, 2, 3], 1, Detect, [nc]] # Multi-scale detection
 ```
 
 ### Classification Model
@@ -352,14 +352,14 @@ head:
 nc: 1000
 
 backbone:
-    - [-1, 1, Conv, [64, 7, 2, 3]]
-    - [-1, 1, nn.MaxPool2d, [3, 2, 1]]
-    - [-1, 4, C2f, [64, True]]
-    - [-1, 1, Conv, [128, 3, 2]]
-    - [-1, 8, C2f, [128, True]]
+  - [-1, 1, Conv, [64, 7, 2, 3]]
+  - [-1, 1, nn.MaxPool2d, [3, 2, 1]]
+  - [-1, 4, C2f, [64, True]]
+  - [-1, 1, Conv, [128, 3, 2]]
+  - [-1, 8, C2f, [128, True]]
 
 head:
-    - [-1, 1, Classify, [nc]]
+  - [-1, 1, Classify, [nc]]
 ```
 
 `Classify` already performs adaptive average pooling internally.
@@ -410,9 +410,9 @@ Replace complex heads with `nn.Identity` to isolate backbone issues:
 ```yaml
 nc: 1
 backbone:
-    - [-1, 1, CustomBlock, [64]]
+  - [-1, 1, CustomBlock, [64]]
 head:
-    - [-1, 1, nn.Identity, []] # Pass-through for debugging
+  - [-1, 1, nn.Identity, []] # Pass-through for debugging
 ```
 
 This allows direct inspection of backbone outputs:

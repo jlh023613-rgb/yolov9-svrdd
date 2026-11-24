@@ -190,9 +190,9 @@ This approach is particularly useful when the target domain differs significantl
 - **Insufficient training data**: training with very few samples is the most common cause - the model cannot learn or generalize from too little data. Ensure enough diverse examples per class before investigating other causes.
 - **Check dataset paths**: invalid image paths raise a dataset error. Individual missing or empty label files are treated as background images and reported during scanning; a training split with no labels raises an error. Validate the dataset before training:
 
-    ```bash
-    yolo detect val model=yolo26n.pt data=custom.yaml
-    ```
+  ```bash
+  yolo detect val model=yolo26n.pt data=custom.yaml
+  ```
 
 - **Lower confidence threshold**: if predictions exist but are filtered out, try `conf=0.1` during inference.
 - **Verify class count**: ensure `nc` in `data.yaml` matches the actual number of classes in the label files.

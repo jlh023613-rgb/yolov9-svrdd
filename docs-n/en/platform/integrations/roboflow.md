@@ -15,10 +15,10 @@ The Roboflow integration imports the supported datasets you select from your Rob
 1. Go to **Settings > [Integrations](index.md)** and select **Roboflow** from the integration list.
 2. Paste your **Roboflow API Key** and click **Connect**. If the workspace has a [saved Roboflow key](../account/api-keys.md#provider-keys-for-agents-and-annotation), the preview opens with it automatically.
 3. Review the **Import from Roboflow** preview:
-    - A table of datasets (name, task, images, size), with nothing selected by default; select the new datasets you want to import
-    - Already-imported versions shown as dimmed, unselectable rows with an **Already imported** tooltip
-    - Counts of unsupported tasks and datasets that couldn't be sized
-    - The size of your selection against your storage
+   - A table of datasets (name, task, images, size), with nothing selected by default; select the new datasets you want to import
+   - Already-imported versions shown as dimmed, unselectable rows with an **Already imported** tooltip
+   - Counts of unsupported tasks and datasets that couldn't be sized
+   - The size of your selection against your storage
 4. Click **Import N** to import the N selected datasets; it stays disabled until the selection fits your storage.
 
 The preview stays open after an import. Started and already-imported datasets remain visible but cannot be selected, while datasets that could not be started stay selected for a retry. Click **Connect** again to refresh the preview and its storage usage; storage limits are checked again when importing.
